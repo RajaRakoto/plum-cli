@@ -55,6 +55,8 @@
     "version-patch": "npm version patch"
   },
   "dependencies": {
+    "@types/figlet": "^1.5.8",
+    "figlet": "^1.7.0",
     "inquirer": "^9.2.15",
     "tslib": "^2.6.2"
   },
