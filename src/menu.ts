@@ -1,4 +1,6 @@
+/* libs */
 import inquirer from 'inquirer';
+import chalk from 'chalk';
 
 // ==============================
 
@@ -6,7 +8,7 @@ export const menu_prompt = [
   {
     type: 'list',
     name: 'menu',
-    message: 'What do you want to do ...',
+    message: chalk.green('What do you want to do ...'),
     loop: false,
     choices: [
       new inquirer.Separator('============ packages manager ============'),
@@ -29,7 +31,11 @@ export const menu_prompt = [
       new inquirer.Separator('================= extras ================='),
       {
         name: 'tips',
-        value: 'tips',
+      },
+      new inquirer.Separator('=========================================='),
+      {
+        name: chalk.red('exit'),
+        value: 'exit',
       },
     ],
   },
