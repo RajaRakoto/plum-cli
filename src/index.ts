@@ -41,7 +41,7 @@ export async function plumCLI(): Promise<void> {
       console.log('selected: tips');
       break;
     case 'exit':
-      console.log(emoji.emojify('See you soon ! :blush:'));
+      console.log(`See you soon ${emoji.get('blush')} !`);
       process.exit();
       break;
     default:
