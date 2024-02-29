@@ -1,6 +1,7 @@
 /* libs */
 import figlet from 'figlet';
 import chalk from 'chalk';
+import * as emoji from 'node-emoji';
 /* files */
 import pkg from '../package.json';
 
@@ -17,9 +18,10 @@ export function bannerRenderer(text: string): Promise<string> {
       if (err) {
         reject(err);
       } else {
-        const packageVersion = pkg.version;
         const coloredBanner = chalk.magenta(rendered);
-        const result = `${coloredBanner}\n version: ${packageVersion}`;
+        const packageVersion = pkg.version;
+        const description = `Customize your website faster with PLUM, a mixins toolset powered by SASS. Quickly produce consistent, scalable CSS output, regardless of project size ${emoji.get('purple_heart')}`;
+        const result = `${coloredBanner}\n version: ${packageVersion}\n\n ${description}`;
         resolve(result);
       }
     });
