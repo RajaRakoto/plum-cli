@@ -2,7 +2,6 @@
 import { execa } from 'execa';
 import chalk from 'chalk';
 import * as emoji from 'node-emoji';
-import * as fs from 'fs';
 
 // ==============================
 
@@ -10,16 +9,16 @@ import * as fs from 'fs';
  * @description A function that detects the package manager used in the current project
  * @returns The package manager detected in the current project
  */
-export function pkgManagerDetector(): string | null {
-  const npmLock = fs.existsSync('package-lock.json');
-  const yarnLock = fs.existsSync('yarn.lock');
-  const pnpmLock = fs.existsSync('pnpm-lock.yaml');
-  const bunLock = fs.existsSync('bun.lockb');
+export async function pkgManagerDetector(): Promise<string | null> {
+  const npmLock = Bun.file('package-lock.json');
+  const yarnLock = Bun.file('yarn.lock');
+  const pnpmLock = Bun.file('pnpm-lock.yaml');
+  const bunLock = Bun.file('bun.lockb');
 
-  if (npmLock) return 'npm';
-  if (yarnLock) return 'yarn';
-  if (pnpmLock) return 'pnpm';
-  if (bunLock) return 'bun';
+  if (await npmLock.exists()) return 'npm';
+  if (await yarnLock.exists()) return 'yarn';
+  if (await pnpmLock.exists()) return 'pnpm';
+  if (await bunLock.exists()) return 'bun';
 
   return null;
 }
@@ -55,7 +54,7 @@ export async function pkgInstaller(
 export async function pkgUninstaller(
   pkg: string = '@nlekane/dummy-npm-package',
 ): Promise<void> {
-  const pkgManager = pkgManagerDetector();
+  const pkgManager = await pkgManagerDetector();
   if (!pkgManager) {
     console.error(
       chalk.red(`\n\nNo package manager detected ${emoji.get('worried')} !`),
