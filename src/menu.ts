@@ -17,12 +17,12 @@ export const menu_prompt = [
         value: 'install',
       },
       {
-        name: `${emoji.get('x')} unistall plum`,
-        value: 'unistall',
-      },
-      {
         name: `${emoji.get('arrows_counterclockwise')} check plum update`,
         value: 'update',
+      },
+      {
+        name: `${emoji.get('x')} unistall plum`,
+        value: 'unistall',
       },
       new inquirer.Separator('======== documentations (offline) ========'),
       `${emoji.get('books')} docs 1`,
