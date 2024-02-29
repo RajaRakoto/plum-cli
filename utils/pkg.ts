@@ -40,9 +40,11 @@ export async function pkgInstaller(
 
   try {
     await execa(pkgManager, [installCMD, ...commandOptions, pkg]);
-    console.log(chalk.green(`Installation completed ${emoji.get('grin')} !`));
+    console.log(
+      chalk.green(`\n\nInstallation completed ${emoji.get('grin')} !`),
+    );
   } catch (error) {
-    console.error('Error during installation:', error);
+    console.error('\n\nError during installation:', error);
   }
 }
 
@@ -56,7 +58,7 @@ export async function pkgUninstaller(
   const pkgManager = pkgManagerDetector();
   if (!pkgManager) {
     console.error(
-      chalk.red(`No package manager detected ${emoji.get('worried')} !`),
+      chalk.red(`\n\nNo package manager detected ${emoji.get('worried')} !`),
     );
     return;
   }
@@ -70,8 +72,10 @@ export async function pkgUninstaller(
 
   try {
     await execa(pkgManager, [uninstallCMD, pkg]);
-    console.log(chalk.green(`Uninstallation completed ${emoji.get('sob')} !`));
+    console.log(
+      chalk.green(`\n\nUninstallation completed ${emoji.get('sob')} !`),
+    );
   } catch (error) {
-    console.error('Error during uninstallation:', error);
+    console.error('\n\nError during uninstallation:', error);
   }
 }
