@@ -2,6 +2,7 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import * as emoji from 'node-emoji';
+import ora from 'ora';
 /* core */
 import { restart } from './restart';
 /* utils */
@@ -25,10 +26,14 @@ export async function uninstall(): Promise<void> {
   const uninstall_answers = await inquirer.prompt(uninstall_prompt);
   if (uninstall_answers.uninstall) {
     console.log(
-      `start uninstallation using ${emoji.get('package')} ${pkgManagerDetector()}, please wait ${emoji.get('cry')} ...`,
+      `start uninstallation using ${pkgManagerDetector()}, please wait ${emoji.get('cry')} ...`,
     );
+
+    const spinner = ora('Uninstalling plum package ...');
+    spinner.start();
+
     testMode ? await pkgUninstaller() : await pkgUninstaller(plumPackageName);
-    restart();
+    restart(spinner);
   } else {
     console.log(
       chalk.yellow(`Uninstallation cancelled ${emoji.get('sweat_smile')} !`),

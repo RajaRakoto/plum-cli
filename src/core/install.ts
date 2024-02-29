@@ -2,6 +2,7 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import * as emoji from 'node-emoji';
+import ora from 'ora';
 /* core */
 import { restart } from './restart';
 /* utils */
@@ -60,39 +61,42 @@ export async function install(): Promise<void> {
   const install_answers = await inquirer.prompt(install_prompt);
   if (install_answers.install) {
     console.log(
-      `start installation using ${emoji.get('package')} ${pkgManagerDetector()}, please wait ${emoji.get('wink')} ...`,
+      `start installation using ${pkgManagerDetector()}, please wait ${emoji.get('wink')} ...`,
     );
+
+    const spinner = ora('Installing plum package ...');
+    spinner.start();
 
     switch (install_answers.pkgManager) {
       case 'npm':
         testMode
           ? await pkgInstaller('npm')
           : await pkgInstaller('npm', true, plumPackageName);
-        await restart();
+        await restart(spinner);
         break;
       case 'yarn':
         testMode
           ? await pkgInstaller('yarn')
           : await pkgInstaller('yarn', true, plumPackageName);
-        await restart();
+        await restart(spinner);
         break;
       case 'pnpm':
         testMode
           ? await pkgInstaller('pnpm')
           : await pkgInstaller('pnpm', true, plumPackageName);
-        await restart();
+        await restart(spinner);
         break;
       case 'bun':
         testMode
           ? await pkgInstaller('bun', true)
           : await pkgInstaller('bun', true, plumPackageName);
-        await restart();
+        await restart(spinner);
         break;
       default:
         testMode
           ? await pkgInstaller('npm')
           : await pkgInstaller('npm', true, plumPackageName);
-        await restart();
+        await restart(spinner);
         break;
     }
   }

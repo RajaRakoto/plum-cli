@@ -5,7 +5,8 @@ import chalk from 'chalk';
 import { plumCLI } from '..';
 /* utils */
 import { exitCLI } from '../../utils/extras';
-
+/* types */
+import type { Ora } from 'ora';
 // ==============================
 
 const restart_prompt = [
@@ -17,7 +18,8 @@ const restart_prompt = [
   },
 ];
 
-export async function restart(): Promise<void> {
+export async function restart(spinner?: Ora): Promise<void> {
+  if (spinner) spinner.stop();
   const restart_answers = await inquirer.prompt(restart_prompt);
   if (restart_answers.restart) {
     plumCLI();
