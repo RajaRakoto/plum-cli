@@ -1,6 +1,6 @@
-/* libs */
 import inquirer from 'inquirer';
 import chalk from 'chalk';
+import * as emoji from 'node-emoji';
 
 // ==============================
 
@@ -13,28 +13,28 @@ export const menu_prompt = [
     choices: [
       new inquirer.Separator('============ packages manager ============'),
       {
-        name: 'install plum',
+        name: `${emoji.get('package')} install plum`,
         value: 'install',
       },
       {
-        name: 'unistall plum',
+        name: `${emoji.get('x')} unistall plum`,
         value: 'unistall',
       },
       {
-        name: 'check plum update',
+        name: `${emoji.get('arrows_counterclockwise')} check plum update`,
         value: 'update',
       },
       new inquirer.Separator('======== documentations (offline) ========'),
-      'docs 1',
-      'docs 2',
-      'docs 3',
+      `${emoji.get('books')} docs 1`,
+      `${emoji.get('books')} docs 2`,
+      `${emoji.get('books')} docs 3`,
       new inquirer.Separator('================= extras ================='),
       {
-        name: 'tips',
+        name: `${emoji.get('bulb')} tips`,
       },
       new inquirer.Separator('=========================================='),
       {
-        name: chalk.red('exit'),
+        name: chalk.red(`${emoji.get('door')} exit`),
         value: 'exit',
       },
     ],
