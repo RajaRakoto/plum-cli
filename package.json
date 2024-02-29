@@ -35,6 +35,7 @@
     "start:smol": "bun --smol dist/index.js",
     "start:bin": "./dist/plum-cli",
     "clean": "rimraf build dist coverage",
+    "dev": "bun run src/index.ts",
     "dev:watch": "bun --watch run src/index.ts",
     "dev:hot": "bun --hot run src/index.ts",
     "dev:smol:watch": "bun --smol --watch run src/index.ts",
@@ -55,7 +56,7 @@
     "version-patch": "npm version patch"
   },
   "dependencies": {
-    "cross-spawn": "^7.0.3",
+    "execa": "^8.0.1",
     "figlet": "^1.7.0",
     "inquirer": "^9.2.15",
     "node-emoji": "^2.1.3",
@@ -63,7 +64,7 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/cross-spawn": "^6.0.6",
+    "@types/execa": "^2.0.0",
     "@types/figlet": "^1.5.8",
     "@types/inquirer": "^9.0.7",
     "@types/jest": "^29.5.12",
