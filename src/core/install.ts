@@ -2,19 +2,19 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import * as emoji from 'node-emoji';
-/* index */
-import { plumCLI } from '..';
-/* extras */
-import { pkgInstaller } from '../../utils/pkg';
+/* core */
+import { restart } from './restart';
+/* utils */
+import { pkgInstaller, pkgManagerDetector } from '../../utils/pkg';
 /* types */
 interface I_install_answers {
-  inProject: boolean;
+  install: boolean;
   pkgManager: string;
 }
 // ==============================
 
-const plumPackageName = '@rajarakoto/plum';
 const testMode = true;
+const plumPackageName = '@rajarakoto/plum';
 const packageLists = ['npm', 'yarn', 'pnpm', 'bun'].map((pkg) => {
   return `${emoji.get('package')} ${pkg}`;
 });
@@ -22,7 +22,7 @@ const packageLists = ['npm', 'yarn', 'pnpm', 'bun'].map((pkg) => {
 const install_prompt = [
   {
     type: 'confirm',
-    name: 'inProject',
+    name: 'install',
     message: chalk.green(
       'Do you want to install plum package in the current directory ?',
     ),
@@ -52,43 +52,48 @@ const install_prompt = [
       },
     ],
     default: 'npm',
-    when: (answers: I_install_answers): boolean => answers.inProject,
+    when: (answers: I_install_answers): boolean => answers.install,
   },
 ];
 
 export async function install(): Promise<void> {
   const install_answers = await inquirer.prompt(install_prompt);
-  if (install_answers.inProject) {
-    console.log(`start installation, please wait ${emoji.get('wink')} ...`);
+  if (install_answers.install) {
+    console.log(
+      `start installation using ${emoji.get('package')} ${pkgManagerDetector()}, please wait ${emoji.get('wink')} ...`,
+    );
 
     switch (install_answers.pkgManager) {
       case 'npm':
         testMode
-          ? pkgInstaller('npm')
-          : pkgInstaller('npm', true, plumPackageName);
+          ? await pkgInstaller('npm')
+          : await pkgInstaller('npm', true, plumPackageName);
+        await restart();
         break;
       case 'yarn':
         testMode
-          ? pkgInstaller('yarn')
-          : pkgInstaller('yarn', true, plumPackageName);
+          ? await pkgInstaller('yarn')
+          : await pkgInstaller('yarn', true, plumPackageName);
+        await restart();
         break;
       case 'pnpm':
         testMode
-          ? pkgInstaller('pnpm')
-          : pkgInstaller('pnpm', true, plumPackageName);
+          ? await pkgInstaller('pnpm')
+          : await pkgInstaller('pnpm', true, plumPackageName);
+        await restart();
         break;
       case 'bun':
         testMode
-          ? pkgInstaller('bun', true)
-          : pkgInstaller('bun', true, plumPackageName);
+          ? await pkgInstaller('bun', true)
+          : await pkgInstaller('bun', true, plumPackageName);
+        await restart();
         break;
       default:
         testMode
-          ? pkgInstaller('npm')
-          : pkgInstaller('npm', true, plumPackageName);
+          ? await pkgInstaller('npm')
+          : await pkgInstaller('npm', true, plumPackageName);
+        await restart();
         break;
     }
-  } else {
-    plumCLI();
   }
 }

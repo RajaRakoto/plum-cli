@@ -1,12 +1,13 @@
 /* libs */
 import inquirer from 'inquirer';
-import * as emoji from 'node-emoji';
 /* menu */
 import { menu_prompt } from './menu';
 /* core */
 import { install } from './core/install';
-/* extras */
+import { uninstall } from './core/uninstall';
+/* utils */
 import { bannerRenderer } from '../utils/ascii';
+import { exitCLI } from '../utils/extras';
 
 // ==============================
 
@@ -31,18 +32,17 @@ export async function plumCLI(): Promise<void> {
     case 'install':
       install();
       break;
-    case 'unistall':
-      console.log('selected: unistall');
-      break;
     case 'update':
       console.log('selected: update');
+      break;
+    case 'unistall':
+      uninstall();
       break;
     case 'tips':
       console.log('selected: tips');
       break;
     case 'exit':
-      console.log(`See you soon ${emoji.get('blush')} !`);
-      process.exit();
+      exitCLI();
       break;
     default:
       plumCLI();
