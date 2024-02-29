@@ -21,7 +21,7 @@ export function bannerRenderer(text: string): Promise<string> {
         const coloredBanner = chalk.magenta(rendered);
         const packageVersion = pkg.version;
         const description = `Customize your website faster with PLUM, a mixins toolset powered by SASS. Quickly produce consistent, scalable CSS output, regardless of project size ${emoji.get('purple_heart')}`;
-        const result = `${coloredBanner}\n version: ${packageVersion}\n\n ${description}`;
+        const result = `${coloredBanner}\n ${chalk.underline('version:')} ${packageVersion}\n\n ${description}`;
         resolve(result);
       }
     });
