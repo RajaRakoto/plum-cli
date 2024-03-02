@@ -65,7 +65,44 @@ module.exports = function (grunt) {
         dest: 'utils',
       },
     },
-  });
+    /**
+     * Minify HTML, CSS and JS from apps for production
+     */
+    htmlmin: {
+      dist: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true,
+        },
+        files: [{
+          expand: true,
+          cwd: 'apps',
+          src: ['**/*.html'],
+          dest: 'dist/apps',
+        }],
+      },
+    },
+    cssmin: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'apps',
+          src: ['**/*.css'],
+          dest: 'dist/apps',
+        }],
+      },
+    },
+    uglify: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'apps',
+          src: ['**/*.js'],
+          dest: 'dist/apps',
+        }],
+      },
+    },
+});
 
   // all grunt register tasks
   grunt.registerTask('backup', [
@@ -76,11 +113,13 @@ module.exports = function (grunt) {
     'compress:utils',
   ]);
 
+  grunt.registerTask('minify', ['htmlmin', 'cssmin', 'uglify']);
+
   // all tasks lists
-  const myTasksNames = ['backup'];
+  const myTasksNames = ['backup', 'minify'];
 
   // tasks status (description)
-  const myTasksStatus = ['compress: main | src | tests | tmp | utils'];
+  const myTasksStatus = ['compress: main | src | tests | tmp | utils', 'minify: html | css | js'];
 
   // default tasks
   grunt.registerTask('default', () => {
