@@ -64,7 +64,8 @@
     "npm-proxy-set:registry": "npm set registry http://localhost:4873/",
     "npm-proxy:start": "bun run npm-proxy-set:registry && verdaccio",
     "npm-proxy:publish": "npm publish --registry http://localhost:4873/",
-    "npm-proxy:unpublish": "npm unpublish --force --registry http://localhost:4873/ plum-cli"
+    "npm-proxy:unpublish": "npm unpublish --force --registry http://localhost:4873/ plum-cli",
+    "npm-proxy:republish": "bun run npm-proxy:unpublish && bun run npm-proxy:publish"
   },
   "dependencies": {
     "execa": "^8.0.1",
