@@ -39,6 +39,9 @@ export async function plumCLI(): Promise<void> {
     case 'unistall':
       uninstall();
       break;
+    case 'magic':
+      app('magic');
+      break;
     case 'buttons':
       app('buttons');
       break;

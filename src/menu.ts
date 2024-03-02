@@ -27,6 +27,10 @@ export const menu_prompt = [
       },
       new inquirer.Separator('================== apps =================='),
       {
+        name: `${emoji.get('books')} magic`,
+        value: 'magic',
+      },
+      {
         name: `${emoji.get('books')} buttons`,
         value: 'buttons',
       },
