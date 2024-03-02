@@ -54,11 +54,12 @@
     "pkg-check": "depcheck",
     "pkg-upgrade": "ncu --interactive --format group --packageManager bun",
     "versioning": "ungit",
-    "version-major": "npm version major",
-    "version-minor": "npm version minor",
-    "version-patch": "npm version patch",
+    "npm-version:major": "npm version major",
+    "npm-version:minor": "npm version minor",
+    "npm-version:patch": "npm version patch",
     "npm-publish": "npm publish --access public",
-    "npm-proxy": "npm set registry http://localhost:4873/ && verdaccio"
+    "npm-proxy:publish": "npm publish --registry http://localhost:4873/",
+    "npm-proxy:start": "npm set registry http://localhost:4873/ && verdaccio"
   },
   "dependencies": {
     "execa": "^8.0.1",
