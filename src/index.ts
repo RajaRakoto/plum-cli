@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* libs */
 import inquirer from 'inquirer';
 /* menu */
