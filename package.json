@@ -30,6 +30,10 @@
     "scss",
     "styles"
   ],
+  "engines": {
+    "bun": ">= 1.0.0",
+    "node": ">= 16.0.0"
+  },
   "scripts": {
     "start": "bun dist/index.js",
     "start:smol": "bun --smol dist/index.js",
