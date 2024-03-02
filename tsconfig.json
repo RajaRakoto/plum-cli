@@ -1,11 +1,11 @@
 {
 	"compilerOptions": {
-		"target": "ES6", // or "ESNext"
+		"target": "ESNext",
 		"module": "ESNext",
 		"lib": ["ESNext", "DOM", "DOM.Iterable"],
 		"jsx": "react-jsx",
 		"verbatimModuleSyntax": true,
-		"moduleResolution": "node", // or "bundler"
+		"moduleResolution": "bundler",
 		"moduleDetection": "force",
 		"rootDir": ".",
 		"outDir": "dist",
