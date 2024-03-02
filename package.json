@@ -57,7 +57,8 @@
     "version-major": "npm version major",
     "version-minor": "npm version minor",
     "version-patch": "npm version patch",
-    "publish": "npm publish --access public"
+    "npm-publish": "npm publish --access public",
+    "npm-proxy": "npm set registry http://localhost:4873/ && verdaccio"
   },
   "dependencies": {
     "execa": "^8.0.1",
