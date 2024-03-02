@@ -56,7 +56,8 @@
     "versioning": "ungit",
     "version-major": "npm version major",
     "version-minor": "npm version minor",
-    "version-patch": "npm version patch"
+    "version-patch": "npm version patch",
+    "publish": "npm publish --access public"
   },
   "dependencies": {
     "execa": "^8.0.1",
