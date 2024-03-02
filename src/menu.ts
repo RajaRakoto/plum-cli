@@ -25,8 +25,11 @@ export const menu_prompt = [
         name: `${emoji.get('x')} unistall plum`,
         value: 'unistall',
       },
-      new inquirer.Separator('======== documentations (offline) ========'),
-      `${emoji.get('books')} docs 1`,
+      new inquirer.Separator('================== apps =================='),
+      {
+        name: `${emoji.get('books')} buttons`,
+        value: 'buttons',
+      },
       `${emoji.get('books')} docs 2`,
       `${emoji.get('books')} docs 3`,
       new inquirer.Separator('================= extras ================='),
