@@ -13,6 +13,7 @@ import { exitCLI } from '../utils/extras';
 
 // ==============================
 
+export const plumPackageName = '@rajarakoto/plum';
 export const devMode = true;
 
 /**

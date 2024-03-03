@@ -4,7 +4,7 @@ import chalk from 'chalk';
 import * as emoji from 'node-emoji';
 import ora from 'ora';
 /* index */
-import { devMode } from '..';
+import { plumPackageName, devMode } from '..';
 /* core */
 import { restart } from './restart';
 /* utils */
@@ -16,7 +16,6 @@ interface I_install_answers {
 }
 // ==============================
 
-const plumPackageName = '@rajarakoto/plum';
 const packageLists = ['npm', 'yarn', 'pnpm', 'bun'].map((pkg) => {
   return `${emoji.get('package')} ${pkg}`;
 });

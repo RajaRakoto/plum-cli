@@ -4,15 +4,13 @@ import chalk from 'chalk';
 import * as emoji from 'node-emoji';
 import ora from 'ora';
 /* index */
-import { devMode } from '..';
+import { plumPackageName, devMode } from '..';
 /* core */
 import { restart } from './restart';
 /* utils */
 import { pkgUninstaller, pkgManagerDetector } from '../../utils/pkg';
 
 // ==============================
-
-const plumPackageName = '@rajarakoto/plum';
 
 const uninstall_prompt = [
   {
