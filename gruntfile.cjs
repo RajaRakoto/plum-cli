@@ -1,7 +1,7 @@
 /**
  * @author: Raja
  * @description: gruntfile for plum cli
- * @requires: grunt | load-grunt-tasks | grunt-contrib-compress
+ * @requires: grunt | load-grunt-tasks | grunt-contrib-compress | grunt-shell | grunt-contrib-htmlmin | grunt-contrib-cssmin | grunt-contrib-uglify | grunt-contrib-imagemin
  */
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
@@ -11,6 +11,21 @@ module.exports = function (grunt) {
 
   // node-glob syntax
   const includeAllFiles = ['**/*', '.*/**/*', '**/.*', '**/.*/**/*'];
+
+  // minify config utility function (html, css, js)
+  function minifyConfig(type) {
+    return {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'dist/apps',
+          src: [`**/*.${type}`],
+          dest: 'dist/apps',
+          ext: `.${type}`
+        }]
+      }
+    };
+  }
 
   /**
    * ~ ALL GRUNT PLUGINS CONFIG ~
@@ -27,6 +42,15 @@ module.exports = function (grunt) {
         },
         files: [{ src: ['./*', './.*'] }],
         filter: 'isFile',
+      },
+      apps: {
+        options: {
+          archive: backupsDestination + 'apps.tar.gz',
+        },
+        expand: true,
+        cwd: './apps/',
+        src: includeAllFiles,
+        dest: 'apps',
       },
       src: {
         options: {
@@ -66,60 +90,50 @@ module.exports = function (grunt) {
       },
     },
     /**
+     * Copy apps to dist
+     */
+    shell: {
+      copyAppsToDist: {
+        command: 'cp -r apps dist'
+      }
+    },
+    /**
      * Minify HTML, CSS and JS from apps for production
      */
-    htmlmin: {
-      dist: {
-        options: {
-          removeComments: true,
-          collapseWhitespace: true,
-        },
+    htmlmin: minifyConfig('html'),
+    cssmin: minifyConfig('css'),
+    uglify: minifyConfig('js'),
+    imagemin: {
+      dynamic: {
         files: [{
           expand: true,
           cwd: 'apps',
-          src: ['**/*.html'],
-          dest: 'dist/apps',
-        }],
-      },
-    },
-    cssmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: 'apps',
-          src: ['**/*.css'],
-          dest: 'dist/apps',
-        }],
-      },
-    },
-    uglify: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: 'apps',
-          src: ['**/*.js'],
-          dest: 'dist/apps',
-        }],
-      },
-    },
+          src: ['**/*.{png,jpg,gif,svg}'],
+          dest: 'dist/apps'
+        }]
+      }
+    }
 });
 
   // all grunt register tasks
   grunt.registerTask('backup', [
     'compress:main',
+    'compress:apps',
     'compress:src',
     'compress:tests',
     'compress:tmp',
     'compress:utils',
   ]);
 
-  grunt.registerTask('minify', ['htmlmin', 'cssmin', 'uglify']);
+  grunt.registerTask('copy', ['shell:copyAppsToDist']);
+
+  grunt.registerTask('minify', ['htmlmin', 'cssmin', 'uglify', 'imagemin']);
 
   // all tasks lists
-  const myTasksNames = ['backup', 'minify'];
+  const myTasksNames = ['backup', 'copy' , 'minify'];
 
   // tasks status (description)
-  const myTasksStatus = ['compress: main | src | tests | tmp | utils', 'minify: html | css | js'];
+  const myTasksStatus = ['compress: main | apps | src | tests | tmp | utils', 'copy: apps to dist', 'minify: html | css | js | images'];
 
   // default tasks
   grunt.registerTask('default', () => {
