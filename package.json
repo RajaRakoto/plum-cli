@@ -31,7 +31,6 @@
     "styles"
   ],
   "engines": {
-    "bun": ">= 1.0.0",
     "node": ">= 16.0.0"
   },
   "scripts": {
@@ -73,8 +72,7 @@
     "figlet": "^1.7.0",
     "inquirer": "^9.2.15",
     "node-emoji": "^2.1.3",
-    "ora": "^8.0.1",
-    "tslib": "^2.6.2"
+    "ora": "^8.0.1"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -101,7 +99,6 @@
     "npm-check-updates": "^16.14.15",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
-    "ts-api-utils": "^1.2.1",
     "ts-jest": "^29.1.2",
     "ungit": "^1.5.25"
   },
