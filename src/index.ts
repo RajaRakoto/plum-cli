@@ -7,7 +7,6 @@ import { install } from './core/install';
 import { uninstall } from './core/uninstall';
 import { docs } from './core/docs';
 import { app } from './core/app';
-import { tips } from './core/tips';
 /* utils */
 import { bannerRenderer } from '../utils/ascii';
 import { exitCLI } from '../utils/extras';
@@ -69,9 +68,6 @@ export async function plumCLI(): Promise<void> {
       break;
     case 'shadows':
       app('shadows');
-      break;
-    case 'tips':
-      tips();
       break;
     case 'exit':
       exitCLI();

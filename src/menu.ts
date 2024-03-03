@@ -63,11 +63,6 @@ export const menu_prompt = [
         name: `${emoji.get('gear')} shadows`,
         value: 'shadows',
       },
-      new inquirer.Separator('================= extras ================='),
-      {
-        name: `${emoji.get('bulb')} tips`,
-        value: 'tips',
-      },
       new inquirer.Separator('=========================================='),
       {
         name: chalk.red(`${emoji.get('door')} exit`),
