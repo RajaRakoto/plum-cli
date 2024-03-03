@@ -89,6 +89,7 @@ typings
 .tern-port
 
 # own
+apps
 backups
 tmp
 .github
