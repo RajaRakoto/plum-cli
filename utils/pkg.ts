@@ -2,6 +2,7 @@
 import { execa } from 'execa';
 import chalk from 'chalk';
 import * as emoji from 'node-emoji';
+import fs from 'fs';
 
 // ==============================
 
@@ -9,16 +10,16 @@ import * as emoji from 'node-emoji';
  * @description A function that detects the package manager used in the current project
  * @returns The package manager detected in the current project
  */
-export async function pkgManagerDetector(): Promise<string | null> {
-  const npmLock = Bun.file('package-lock.json');
-  const yarnLock = Bun.file('yarn.lock');
-  const pnpmLock = Bun.file('pnpm-lock.yaml');
-  const bunLock = Bun.file('bun.lockb');
+export function pkgManagerDetector(): string | null {
+  const npmLock = fs.existsSync('package-lock.json');
+  const yarnLock = fs.existsSync('yarn.lock');
+  const pnpmLock = fs.existsSync('pnpm-lock.yaml');
+  const bunLock = fs.existsSync('bun.lockb');
 
-  if (await npmLock.exists()) return 'npm';
-  if (await yarnLock.exists()) return 'yarn';
-  if (await pnpmLock.exists()) return 'pnpm';
-  if (await bunLock.exists()) return 'bun';
+  if (npmLock) return 'npm';
+  if (yarnLock) return 'yarn';
+  if (pnpmLock) return 'pnpm';
+  if (bunLock) return 'bun';
 
   return null;
 }
