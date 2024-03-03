@@ -1,5 +1,5 @@
 /* core */
-import { restart } from "./restart";
+import { restart } from './restart';
 
 // ==============================
 
