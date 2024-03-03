@@ -18,7 +18,7 @@ export function resolveRealPath(relativePath: string): string {
   return realPath;
 }
 
-export async function openInBrowser(filePath: string): Promise<void> {
+export async function defaultOpen(filePath: string): Promise<void> {
   try {
     const platform = process.platform;
     const realPath = devMode ? filePath : resolveRealPath(filePath);
