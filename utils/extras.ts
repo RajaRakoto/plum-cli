@@ -1,10 +1,7 @@
 /* libs */
 import * as emoji from 'node-emoji';
 import { execa } from 'execa';
-// import * as path from 'path';
 import { findUp } from 'find-up';
-/* index */
-import { devMode } from '../src';
 
 // ==============================
 
@@ -13,17 +10,10 @@ export function exitCLI(): void {
   process.exit();
 }
 
-// export function resolveAbsolutePath(filePath: string): string {
-//   const scriptPath = process.argv[1];
-//   const scriptDirectory = path.dirname(scriptPath);
-//   const resolvedPath = path.join(scriptDirectory, filePath);
-//   return resolvedPath;
-// }
-
 export async function openInBrowser(filePath: string): Promise<void> {
   try {
     const platform = process.platform;
-    const realPath = devMode ? filePath : await findUp(filePath);
+    const absolutePath = (await findUp(filePath)) || filePath;
     let execCMD: string = '';
 
     switch (platform) {
@@ -44,7 +34,7 @@ export async function openInBrowser(filePath: string): Promise<void> {
         return;
     }
 
-    await execa(execCMD, [realPath as string]);
+    await execa(execCMD, [absolutePath]);
   } catch (error) {
     console.error('\n\nError during opening:', error);
   }
