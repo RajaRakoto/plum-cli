@@ -1,6 +1,9 @@
 /* libs */
 import * as emoji from 'node-emoji';
 import { execa } from 'execa';
+import * as path from 'path';
+/* index */
+import { devMode } from '../src';
 
 // ==============================
 
@@ -12,6 +15,7 @@ export function exitCLI(): void {
 export async function openInBrowser(filePath: string): Promise<void> {
   try {
     const platform = process.platform;
+    const realPath = devMode ? filePath : path.join(__dirname, filePath);
     let execCMD: string = '';
 
     switch (platform) {
@@ -21,7 +25,10 @@ export async function openInBrowser(filePath: string): Promise<void> {
       case 'darwin':
         execCMD = 'open';
         break;
-      case 'linux' || 'freebsd' || 'openbsd' || 'sunos':
+      case 'linux':
+      case 'freebsd':
+      case 'openbsd':
+      case 'sunos':
         execCMD = 'xdg-open';
         break;
       default:
@@ -29,7 +36,7 @@ export async function openInBrowser(filePath: string): Promise<void> {
         return;
     }
 
-    await execa(execCMD, [filePath]);
+    await execa(execCMD, [realPath]);
   } catch (error) {
     console.error('\n\nError during opening:', error);
   }
