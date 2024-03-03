@@ -1,7 +1,7 @@
 {
   "name": "plum-cli",
   "version": "1.0.0",
-  "description": "Elevate your web development with our Plum CLI: seamless integration, offline documentation, updates management, and expert tips ... 🩷",
+  "description": "Streamline your web development process with Plum CLI: Effortlessly integrate the Plum package, access offline documentation and unlock a suite of applications for better use of third-party modules ... 🩷",
   "author": "Raja Rakotonirina <raja.rakoto7@gmail.com>",
   "license": "MIT",
   "type": "module",
