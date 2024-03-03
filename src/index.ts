@@ -5,14 +5,16 @@ import { menu_prompt } from './menu';
 /* core */
 import { install } from './core/install';
 import { uninstall } from './core/uninstall';
+import { docs } from './core/docs';
 import { app } from './core/app';
+import { tips } from './core/tips';
 /* utils */
 import { bannerRenderer } from '../utils/ascii';
 import { exitCLI } from '../utils/extras';
 
 // ==============================
 
-export const devMode = false;
+export const devMode = true;
 
 /**
  * @description Entry point of the CLI
@@ -35,11 +37,26 @@ export async function plumCLI(): Promise<void> {
     case 'install':
       install();
       break;
-    case 'update':
-      console.log('selected: update');
-      break;
     case 'unistall':
       uninstall();
+      break;
+    case 'docs':
+      docs();
+      break;
+    case 'animate':
+      app('animate');
+      break;
+    case 'buttons2':
+      app('buttons2');
+      break;
+    case 'flex':
+      app('flex');
+      break;
+    case 'grid':
+      app('grid');
+      break;
+    case 'hover2':
+      app('hover2');
       break;
     case 'magic':
       app('magic');
@@ -47,8 +64,14 @@ export async function plumCLI(): Promise<void> {
     case 'buttons':
       app('buttons');
       break;
+    case 'oc-scheme':
+      app('oc-scheme');
+      break;
+    case 'shadows':
+      app('shadows');
+      break;
     case 'tips':
-      console.log('selected: tips');
+      tips();
       break;
     case 'exit':
       exitCLI();

@@ -18,27 +18,55 @@ export const menu_prompt = [
         value: 'install',
       },
       {
-        name: `${emoji.get('arrows_counterclockwise')} check plum update`,
-        value: 'update',
-      },
-      {
         name: `${emoji.get('x')} unistall plum`,
         value: 'unistall',
       },
+      new inquirer.Separator('================== docs =================='),
+      {
+        name: `${emoji.get('books')} plum docs`,
+        value: 'docs',
+      },
       new inquirer.Separator('================== apps =================='),
       {
-        name: `${emoji.get('books')} magic`,
+        name: `${emoji.get('gear')} animate`,
+        value: 'animate',
+      },
+      {
+        name: `${emoji.get('gear')} buttons2`,
+        value: 'buttons2',
+      },
+      {
+        name: `${emoji.get('gear')} flex`,
+        value: 'flex',
+      },
+      {
+        name: `${emoji.get('gear')} grid`,
+        value: 'grid',
+      },
+      {
+        name: `${emoji.get('gear')} hover2`,
+        value: 'hover2',
+      },
+      {
+        name: `${emoji.get('gear')} magic`,
         value: 'magic',
       },
       {
-        name: `${emoji.get('books')} buttons`,
+        name: `${emoji.get('gear')} buttons`,
         value: 'buttons',
       },
-      `${emoji.get('books')} docs 2`,
-      `${emoji.get('books')} docs 3`,
+      {
+        name: `${emoji.get('gear')} oc-scheme`,
+        value: 'oc-scheme',
+      },
+      {
+        name: `${emoji.get('gear')} shadows`,
+        value: 'shadows',
+      },
       new inquirer.Separator('================= extras ================='),
       {
         name: `${emoji.get('bulb')} tips`,
+        value: 'tips',
       },
       new inquirer.Separator('=========================================='),
       {
