@@ -453,25 +453,25 @@
     <div class="sharethis-inline-share-buttons" style="margin-top: 4em"></div>
     <ul></ul>
     <script>
-      const isMac = navigator.appVersion.indexOf('Mac') != -1
+      const isMac = navigator.appVersion.indexOf('Mac') != -1;
 
       if (isMac) {
         document.querySelector('.shortcuts-disclaimer .shortcut').textContent =
-          '⌘+D'
+          '⌘+D';
       }
 
       function copyToClipboard(value) {
-        const tempInput = document.createElement('textarea')
-        tempInput.style = 'position: absolute; left: -1000px; top: -1000px'
-        tempInput.value = value
-        document.body.appendChild(tempInput)
-        tempInput.select()
-        document.execCommand('copy')
-        document.body.removeChild(tempInput)
-        return true
+        const tempInput = document.createElement('textarea');
+        tempInput.style = 'position: absolute; left: -1000px; top: -1000px';
+        tempInput.value = value;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        return true;
       }
 
-      const ul = document.querySelector('ul')
+      const ul = document.querySelector('ul');
       const buttons = [
         {
           credits: 'Dribbble',
@@ -4746,20 +4746,20 @@
           }
         `,
         },
-      ]
+      ];
 
       async function addButton(button) {
-        const index = buttons.indexOf(button) + 1
+        const index = buttons.indexOf(button) + 1;
 
-        const li = document.createElement('li')
-        let html = `<button class="button-${index}" role="button">Button ${index}</button>`
+        const li = document.createElement('li');
+        let html = `<button class="button-${index}" role="button">Button ${index}</button>`;
         if (button.html) {
-          html = button.html.replace(/{index}/g, index)
+          html = button.html.replace(/{index}/g, index);
         }
         if (button.liBackground) {
-          li.style.background = button.liBackground
+          li.style.background = button.liBackground;
         }
-        console.log('porraaa', html)
+        console.log('porraaa', html);
         li.innerHTML = `
         <div class="button-wrapper">
           ${html}
@@ -4770,18 +4770,18 @@
         <span class="credits">
           by ${button.credits}
         </span>
-      `
+      `;
 
         li.querySelector('.button-wrapper').dataset.tippyContent =
-          `Click to copy button ${index}`
-        ul.appendChild(li)
+          `Click to copy button ${index}`;
+        ul.appendChild(li);
 
         li.addEventListener('click', function (e) {
           const textElement = button.html
             ? li.querySelector('button .text') || li.querySelector('button')
-            : li.querySelector('button')
+            : li.querySelector('button');
 
-          const previousTextContent = textElement.textContent
+          const previousTextContent = textElement.textContent;
           copyToClipboard(
             `
           <!-- HTML !-->
@@ -4796,23 +4796,23 @@
         `
               .replace(/^ {10}/gm, '')
               .trim(),
-          )
+          );
           if (textElement.textContent !== `Copied ${index}`) {
-            li.classList.add('copied')
-            textElement.textContent = `Copied ${index}`
+            li.classList.add('copied');
+            textElement.textContent = `Copied ${index}`;
             setTimeout(() => {
-              textElement.textContent = previousTextContent
-              li.classList.remove('copied')
-            }, 1000)
+              textElement.textContent = previousTextContent;
+              li.classList.remove('copied');
+            }, 1000);
           }
-        })
+        });
       }
 
       async function processArray(buttonsArray) {
-        buttonsArray.map((button) => addButton(button))
+        buttonsArray.map((button) => addButton(button));
       }
 
-      processArray(buttons)
+      processArray(buttons);
     </script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
@@ -4820,59 +4820,59 @@
       tippy.delegate('body', {
         target: '[data-tippy-content]',
         touch: false,
-      })
+      });
     </script>
     <!-- Google Analytics Tracking code -->
     <script>
-      ;(function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r
-        ;(i[r] =
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        (i[r] =
           i[r] ||
           function () {
-            ;(i[r].q = i[r].q || []).push(arguments)
+            (i[r].q = i[r].q || []).push(arguments);
           }),
-          (i[r].l = 1 * new Date())
-        ;(a = s.createElement(o)), (m = s.getElementsByTagName(o)[0])
-        a.async = 1
-        a.src = g
-        m.parentNode.insertBefore(a, m)
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
       })(
         window,
         document,
         'script',
         '//www.google-analytics.com/analytics.js',
         'ga',
-      )
+      );
 
-      ga('create', 'UA-120858769-2', 'auto')
-      ga('send', 'pageview')
+      ga('create', 'UA-120858769-2', 'auto');
+      ga('send', 'pageview');
     </script>
     <!-- MailerLite Universal -->
     <script>
-      ;(function (m, a, i, l, e, r) {
-        m['MailerLiteObject'] = e
+      (function (m, a, i, l, e, r) {
+        m['MailerLiteObject'] = e;
         function f() {
-          var c = { a: arguments, q: [] }
-          var r = this.push(c)
-          return 'number' != typeof r ? r : f.bind(c.q)
+          var c = { a: arguments, q: [] };
+          var r = this.push(c);
+          return 'number' != typeof r ? r : f.bind(c.q);
         }
-        f.q = f.q || []
-        m[e] = m[e] || f.bind(f.q)
-        m[e].q = m[e].q || f.q
-        r = a.createElement(i)
-        var _ = a.getElementsByTagName(i)[0]
-        r.async = 1
-        r.src = l + '?v' + ~~(new Date().getTime() / 1000000)
-        _.parentNode.insertBefore(r, _)
+        f.q = f.q || [];
+        m[e] = m[e] || f.bind(f.q);
+        m[e].q = m[e].q || f.q;
+        r = a.createElement(i);
+        var _ = a.getElementsByTagName(i)[0];
+        r.async = 1;
+        r.src = l + '?v' + ~~(new Date().getTime() / 1000000);
+        _.parentNode.insertBefore(r, _);
       })(
         window,
         document,
         'script',
         'https://static.mailerlite.com/js/universal.js',
         'ml',
-      )
+      );
 
-      var ml_account = ml('accounts', '2205100', 'j9b3a0j1a5', 'load')
+      var ml_account = ml('accounts', '2205100', 'j9b3a0j1a5', 'load');
     </script>
     <!-- End MailerLite Universal -->
   </body>
