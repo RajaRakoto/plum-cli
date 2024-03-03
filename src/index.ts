@@ -12,7 +12,7 @@ import { exitCLI } from '../utils/extras';
 
 // ==============================
 
-export const devMode = true;
+export const devMode = false;
 
 /**
  * @description Entry point of the CLI

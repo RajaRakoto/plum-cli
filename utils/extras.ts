@@ -12,10 +12,17 @@ export function exitCLI(): void {
   process.exit();
 }
 
+export function resolveAbsolutePath(filePath: string): string {
+  const scriptPath = process.argv[1];
+  const scriptDirectory = path.dirname(scriptPath);
+  const resolvedPath = path.join(scriptDirectory, filePath);
+  return resolvedPath;
+}
+
 export async function openInBrowser(filePath: string): Promise<void> {
   try {
     const platform = process.platform;
-    const realPath = devMode ? filePath : path.join(__dirname, filePath);
+    const realPath = devMode ? filePath : resolveAbsolutePath(filePath);
     let execCMD: string = '';
 
     switch (platform) {
