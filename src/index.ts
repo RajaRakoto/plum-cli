@@ -12,6 +12,8 @@ import { exitCLI } from '../utils/extras';
 
 // ==============================
 
+export const devMode = true;
+
 /**
  * @description Entry point of the CLI
  */

@@ -3,6 +3,8 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import * as emoji from 'node-emoji';
 import ora from 'ora';
+/* index */
+import { devMode } from '..';
 /* core */
 import { restart } from './restart';
 /* utils */
@@ -14,7 +16,6 @@ interface I_install_answers {
 }
 // ==============================
 
-const testMode = true;
 const plumPackageName = '@rajarakoto/plum';
 const packageLists = ['npm', 'yarn', 'pnpm', 'bun'].map((pkg) => {
   return `${emoji.get('package')} ${pkg}`;
@@ -69,31 +70,31 @@ export async function install(): Promise<void> {
 
     switch (install_answers.pkgManager) {
       case 'npm':
-        testMode
+        devMode
           ? await pkgInstaller('npm')
           : await pkgInstaller('npm', true, plumPackageName);
         await restart(spinner);
         break;
       case 'yarn':
-        testMode
+        devMode
           ? await pkgInstaller('yarn')
           : await pkgInstaller('yarn', true, plumPackageName);
         await restart(spinner);
         break;
       case 'pnpm':
-        testMode
+        devMode
           ? await pkgInstaller('pnpm')
           : await pkgInstaller('pnpm', true, plumPackageName);
         await restart(spinner);
         break;
       case 'bun':
-        testMode
+        devMode
           ? await pkgInstaller('bun', true)
           : await pkgInstaller('bun', true, plumPackageName);
         await restart(spinner);
         break;
       default:
-        testMode
+        devMode
           ? await pkgInstaller('npm')
           : await pkgInstaller('npm', true, plumPackageName);
         await restart(spinner);

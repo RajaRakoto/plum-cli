@@ -3,6 +3,8 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import * as emoji from 'node-emoji';
 import ora from 'ora';
+/* index */
+import { devMode } from '..';
 /* core */
 import { restart } from './restart';
 /* utils */
@@ -10,7 +12,6 @@ import { pkgUninstaller, pkgManagerDetector } from '../../utils/pkg';
 
 // ==============================
 
-const testMode = true;
 const plumPackageName = '@rajarakoto/plum';
 
 const uninstall_prompt = [
@@ -32,7 +33,7 @@ export async function uninstall(): Promise<void> {
     const spinner = ora('Uninstalling plum package ...');
     spinner.start();
 
-    testMode ? await pkgUninstaller() : await pkgUninstaller(plumPackageName);
+    devMode ? await pkgUninstaller() : await pkgUninstaller(plumPackageName);
     restart(spinner);
   } else {
     console.log(
