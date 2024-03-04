@@ -90,6 +90,7 @@ typings
 
 # own
 apps
+docs
 backups
 tmp
 .github
