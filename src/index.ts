@@ -1,5 +1,6 @@
 /* libs */
 import inquirer from 'inquirer';
+import { Command } from 'commander';
 /* menu */
 import { menu_prompt } from './menu';
 /* core */
@@ -10,6 +11,8 @@ import { app } from './core/app';
 /* utils */
 import { bannerRenderer } from '../utils/ascii';
 import { exitCLI } from '../utils/extras';
+/* files */
+import pkg from '../package.json';
 
 // ==============================
 
@@ -79,4 +82,16 @@ export async function plumCLI(): Promise<void> {
   }
 }
 
-plumCLI();
+function args(): void {
+  const packageVersion = pkg.version;
+  const program = new Command();
+  program.option('-v, --version', 'show plum CLI version');
+  program.parse(process.argv);
+  if (program.opts().version) {
+    console.log(`version ${packageVersion}`);
+  } else {
+    plumCLI();
+  }
+}
+
+args();
