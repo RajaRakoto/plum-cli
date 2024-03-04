@@ -12,18 +12,19 @@ module.exports = function (grunt) {
   // node-glob syntax
   const includeAllFiles = ['**/*', '.*/**/*', '**/.*', '**/.*/**/*'];
 
-  // minify config utility function (html, css, js)
-  function minifyConfig(type) {
+  // minify config utility
+  function minifyWebConfig(type, folder) {
     return {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: 'dist/apps',
-          src: [`**/*.${type}`],
-          dest: 'dist/apps',
-          ext: `.${type}`
-        }]
-      }
+      expand: true, cwd: `dist/${folder}`, src: [`**/*.${type}`], dest: `dist/${folder}`, ext: `.${type}`
+    };
+  }
+
+  function minifyImgConfig(folder) {
+    return {
+      expand: true,
+      cwd: folder,
+      src: ['**/*.{png,jpg,gif,svg}'],
+      dest: 'dist/' + folder
     };
   }
 
@@ -109,17 +110,36 @@ module.exports = function (grunt) {
     /**
      * Minify HTML, CSS, JS, Images (png, jpg, gif, svg) from apps and docs to dist
      */
-    htmlmin: minifyConfig('html'),
-    cssmin: minifyConfig('css'),
-    uglify: minifyConfig('js'),
+    htmlmin: {
+      dist: {
+        files: [
+          minifyWebConfig('html', 'apps'),
+          minifyWebConfig('html', 'docs')
+        ]
+      }
+    },
+    cssmin: {
+      dist: {
+        files: [
+          minifyWebConfig('css', 'apps'),
+          minifyWebConfig('css', 'docs')
+        ]
+      }
+    },
+    uglify: {
+      dist: {
+        files: [
+          minifyWebConfig('js', 'apps'),
+          minifyWebConfig('js', 'docs')
+        ]
+      }
+    },
     imagemin: {
       dynamic: {
-        files: [{
-          expand: true,
-          cwd: 'apps',
-          src: ['**/*.{png,jpg,gif,svg}'],
-          dest: 'dist/apps'
-        }]
+        files: [
+          minifyImgConfig('apps'),
+          minifyImgConfig('docs')
+        ]
       }
     }
 });
