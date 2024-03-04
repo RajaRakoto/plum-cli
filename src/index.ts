@@ -17,7 +17,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const plumPackageName = '@rajarakoto/plum';
-export const devMode = true;
+export const devMode = false;
 
 /**
  * @description Entry point of the CLI
