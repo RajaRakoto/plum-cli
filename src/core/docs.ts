@@ -1,9 +1,11 @@
-/* core */
+/* utils */
+import { defaultOpen } from '../../utils/extras';
+/* utils */
 import { restart } from './restart';
 
 // ==============================
 
 export function docs(): void {
-  console.log('docs');
+  defaultOpen('./docs/index.html');
   restart();
 }
