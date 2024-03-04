@@ -15,7 +15,7 @@ module.exports = function (grunt) {
   // minify config utility
   function minifyWebConfig(type, folder) {
     return {
-      expand: true, cwd: `dist/${folder}`, src: [`**/*.${type}`], dest: `dist/${folder}`, ext: `.${type}`
+      expand: true, cwd: `dist/${folder}`, src: [`**/*.${type}`, `!**/*.min.${type}`], dest: `dist/${folder}`, ext: `.${type}`
     };
   }
 
