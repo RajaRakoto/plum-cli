@@ -52,6 +52,15 @@ module.exports = function (grunt) {
         src: includeAllFiles,
         dest: 'apps',
       },
+      docs: {
+        options: {
+          archive: backupsDestination + 'docs.tar.gz',
+        },
+        expand: true,
+        cwd: './docs/',
+        src: includeAllFiles,
+        dest: 'docs',
+      },
       src: {
         options: {
           archive: backupsDestination + 'src.tar.gz',
@@ -119,6 +128,7 @@ module.exports = function (grunt) {
   grunt.registerTask('backup', [
     'compress:main',
     'compress:apps',
+    'compress:docs',
     'compress:src',
     'compress:tests',
     'compress:tmp',
@@ -133,7 +143,7 @@ module.exports = function (grunt) {
   const myTasksNames = ['backup', 'copy' , 'minify'];
 
   // tasks status (description)
-  const myTasksStatus = ['compress: main | apps | src | tests | tmp | utils', 'copy: apps to dist', 'minify: html | css | js | images'];
+  const myTasksStatus = ['compress: main | apps | docs | src | tests | tmp | utils', 'copy: apps to dist', 'minify: html | css | js | images'];
 
   // default tasks
   grunt.registerTask('default', () => {
