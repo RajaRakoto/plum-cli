@@ -10,7 +10,11 @@
 
 ### 📌 Using 
 
-> waiting for the first release ...
+```bash
+npm install -g @rajarakoto/plum-cli
+```
+
+<img src="https://github.com/RajaRakoto/github-docs/blob/master/plum/plum-cli-demo.gif?raw=true" width="200">
 
 ---
 
