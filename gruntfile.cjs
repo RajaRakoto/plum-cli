@@ -93,12 +93,12 @@ module.exports = function (grunt) {
      * Copy apps to dist
      */
     shell: {
-      copyAppsToDist: {
-        command: 'cp -r apps dist'
+      copyDistDeps: {
+        command: ['cp -r apps dist', 'cp -r docs dist'].join('&&'),
       }
     },
     /**
-     * Minify HTML, CSS and JS from apps for production
+     * Minify HTML, CSS, JS, Images (png, jpg, gif, svg) from apps and docs to dist
      */
     htmlmin: minifyConfig('html'),
     cssmin: minifyConfig('css'),
@@ -125,7 +125,7 @@ module.exports = function (grunt) {
     'compress:utils',
   ]);
 
-  grunt.registerTask('copy', ['shell:copyAppsToDist']);
+  grunt.registerTask('copy', ['shell:copyDistDeps']);
 
   grunt.registerTask('minify', ['htmlmin', 'cssmin', 'uglify', 'imagemin']);
 
