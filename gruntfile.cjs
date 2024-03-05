@@ -107,7 +107,7 @@ module.exports = function (grunt) {
      */
     shell: {
       copyDistDeps: {
-        command: ['cp -r apps dist', 'cp -r docs dist'].join('&&'),
+        command: ['cp -r apps dist', 'cp -r docs dist', 'cp -r scripts dist'].join('&&'),
       },
     },
     /**
