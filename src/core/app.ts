@@ -1,6 +1,6 @@
 /* utils */
 import { defaultOpen } from '../../utils/extras';
-/* utils */
+/* core */
 import { restart } from './restart';
 
 // ==============================
