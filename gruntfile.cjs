@@ -1,5 +1,4 @@
 /**
- * @author: Raja
  * @description: gruntfile for plum cli
  * @requires: grunt | load-grunt-tasks | grunt-contrib-compress | grunt-shell | grunt-contrib-htmlmin | grunt-contrib-cssmin | grunt-contrib-uglify | grunt-contrib-imagemin
  */
@@ -15,7 +14,11 @@ module.exports = function (grunt) {
   // minify config utility
   function minifyWebConfig(type, folder) {
     return {
-      expand: true, cwd: `dist/${folder}`, src: [`**/*.${type}`, `!**/*.min.${type}`], dest: `dist/${folder}`, ext: `.${type}`
+      expand: true,
+      cwd: `dist/${folder}`,
+      src: [`**/*.${type}`, `!**/*.min.${type}`],
+      dest: `dist/${folder}`,
+      ext: `.${type}`,
     };
   }
 
@@ -24,7 +27,7 @@ module.exports = function (grunt) {
       expand: true,
       cwd: folder,
       src: ['**/*.{png,jpg,gif,svg}'],
-      dest: 'dist/' + folder
+      dest: 'dist/' + folder,
     };
   }
 
@@ -105,7 +108,7 @@ module.exports = function (grunt) {
     shell: {
       copyDistDeps: {
         command: ['cp -r apps dist', 'cp -r docs dist'].join('&&'),
-      }
+      },
     },
     /**
      * Minify HTML, CSS, JS, Images (png, jpg, gif, svg) from apps and docs to dist
@@ -114,35 +117,26 @@ module.exports = function (grunt) {
       dist: {
         files: [
           minifyWebConfig('html', 'apps'),
-          minifyWebConfig('html', 'docs')
-        ]
-      }
+          minifyWebConfig('html', 'docs'),
+        ],
+      },
     },
     cssmin: {
       dist: {
-        files: [
-          minifyWebConfig('css', 'apps'),
-          minifyWebConfig('css', 'docs')
-        ]
-      }
+        files: [minifyWebConfig('css', 'apps'), minifyWebConfig('css', 'docs')],
+      },
     },
     uglify: {
       dist: {
-        files: [
-          minifyWebConfig('js', 'apps'),
-          minifyWebConfig('js', 'docs')
-        ]
-      }
+        files: [minifyWebConfig('js', 'apps'), minifyWebConfig('js', 'docs')],
+      },
     },
     imagemin: {
       dynamic: {
-        files: [
-          minifyImgConfig('apps'),
-          minifyImgConfig('docs')
-        ]
-      }
-    }
-});
+        files: [minifyImgConfig('apps'), minifyImgConfig('docs')],
+      },
+    },
+  });
 
   // all grunt register tasks
   grunt.registerTask('backup', [
@@ -160,10 +154,14 @@ module.exports = function (grunt) {
   grunt.registerTask('minify', ['htmlmin', 'cssmin', 'uglify', 'imagemin']);
 
   // all tasks lists
-  const myTasksNames = ['backup', 'copy' , 'minify'];
+  const myTasksNames = ['backup', 'copy', 'minify'];
 
   // tasks status (description)
-  const myTasksStatus = ['compress: main | apps | docs | src | tests | tmp | utils', 'copy: apps to dist', 'minify: html | css | js | images'];
+  const myTasksStatus = [
+    'compress: main | apps | docs | src | tests | tmp | utils',
+    'copy: apps to dist',
+    'minify: html | css | js | images',
+  ];
 
   // default tasks
   grunt.registerTask('default', () => {
@@ -211,6 +209,11 @@ module.exports = function (grunt) {
     }
 
     // task resume
-    getTaskResume('== PLUM CLI TASKS ==', myTasksNames, myTasksStatus, 'yellow');
+    getTaskResume(
+      '== PLUM CLI TASKS ==',
+      myTasksNames,
+      myTasksStatus,
+      'magenta',
+    );
   });
 };
