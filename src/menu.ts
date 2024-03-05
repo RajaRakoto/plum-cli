@@ -29,39 +29,48 @@ export const menu_prompt = [
       new inquirer.Separator('================== apps =================='),
       {
         name: `${emoji.get('gear')} animate`,
-        value: 'animate',
+        value: 'app-animate',
       },
       {
         name: `${emoji.get('gear')} buttons2`,
-        value: 'buttons2',
+        value: 'app-buttons2',
       },
       {
         name: `${emoji.get('gear')} flex`,
-        value: 'flex',
+        value: 'app-flex',
       },
       {
         name: `${emoji.get('gear')} grid`,
-        value: 'grid',
+        value: 'app-grid',
       },
       {
         name: `${emoji.get('gear')} hover2`,
-        value: 'hover2',
+        value: 'app-hover2',
       },
       {
         name: `${emoji.get('gear')} magic`,
-        value: 'magic',
+        value: 'app-magic',
       },
       {
         name: `${emoji.get('gear')} buttons`,
-        value: 'buttons',
+        value: 'app-buttons',
       },
       {
         name: `${emoji.get('gear')} oc-scheme`,
-        value: 'oc-scheme',
+        value: 'app-oc-scheme',
       },
       {
         name: `${emoji.get('gear')} shadows`,
-        value: 'shadows',
+        value: 'app-shadows',
+      },
+      new inquirer.Separator('================= scripts ================'),
+      {
+        name: `${emoji.get('clipboard')} bootstrap`,
+        value: 'script-bootstrap',
+      },
+      {
+        name: `${emoji.get('clipboard')} buttons2`,
+        value: 'script-buttons2',
       },
       new inquirer.Separator('=========================================='),
       {

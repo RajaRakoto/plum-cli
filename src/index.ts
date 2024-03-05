@@ -4,10 +4,11 @@ import { Command } from 'commander';
 /* menu */
 import { menu_prompt } from './menu';
 /* core */
+import { app } from './core/app';
+import { docs } from './core/docs';
 import { install } from './core/install';
 import { uninstall } from './core/uninstall';
-import { docs } from './core/docs';
-import { app } from './core/app';
+import { scripts } from './core/scripts';
 /* utils */
 import { bannerRenderer } from '../utils/ascii';
 import { exitCLI } from '../utils/extras';
@@ -17,7 +18,7 @@ import pkg from '../package.json';
 // ==============================
 
 export const plumPackageName = '@rajarakoto/plum';
-export const devMode = false;
+export const devMode = true;
 
 /**
  * @description Entry point of the CLI
@@ -46,32 +47,38 @@ export async function plumCLI(): Promise<void> {
     case 'docs':
       docs();
       break;
-    case 'animate':
+    case 'app-animate':
       app('animate');
       break;
-    case 'buttons2':
+    case 'app-buttons2':
       app('buttons2');
       break;
-    case 'flex':
+    case 'app-flex':
       app('flex');
       break;
-    case 'grid':
+    case 'app-grid':
       app('grid');
       break;
-    case 'hover2':
+    case 'app-hover2':
       app('hover2');
       break;
-    case 'magic':
+    case 'app-magic':
       app('magic');
       break;
-    case 'buttons':
+    case 'app-buttons':
       app('buttons');
       break;
-    case 'oc-scheme':
+    case 'app-oc-scheme':
       app('oc-scheme');
       break;
-    case 'shadows':
+    case 'app-shadows':
       app('shadows');
+      break;
+    case 'script-bootstrap':
+      scripts('bootstrap');
+      break;
+    case 'script-buttons2':
+      scripts('buttons2');
       break;
     case 'exit':
       exitCLI();
