@@ -59,3 +59,23 @@ export async function defaultOpen(filePath: string): Promise<void> {
     console.error('\n\nError during opening:', error);
   }
 }
+
+/**
+ * @description A function to copy a file from source to target
+ * @param source The source file
+ * @param target The target file
+ */
+export function copyFile(
+  source: string,
+  target: string = './plum-scripts',
+): void {
+  const realSource = devMode ? source : resolveRealPath(source);
+  const targetDir = path.resolve(path.join(process.cwd(), target));
+
+  if (!fs.existsSync(targetDir)) {
+    fs.mkdirSync(targetDir, { recursive: true });
+  }
+
+  const targetFile = path.join(targetDir, path.basename(source));
+  fs.copyFileSync(realSource, targetFile);
+}
