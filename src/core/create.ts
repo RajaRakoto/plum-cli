@@ -18,7 +18,8 @@ const create_prompt = [
 
 export async function create(pkgManager: string): Promise<boolean> {
   const create_answers = await inquirer.prompt(create_prompt);
-  const error_unknown_package_manager_msg = '\n\nError: Unknown package manager';
+  const error_unknown_package_manager_msg =
+    '\n\nError: Unknown package manager';
   const error_during_init_msg = `Error during ${pkgManager} init:`;
 
   if (create_answers.create) {
