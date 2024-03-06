@@ -13,7 +13,7 @@ const path_lists = {
   hover2: './apps/hover2/index.html',
   magic: './apps/magic/index.html',
   buttons: './apps/buttons.html',
-  ocScheme: './apps/oc-scheme.png',
+  'oc-scheme': './apps/oc-scheme.png',
   shadows: './apps/shadows.html',
 };
 
