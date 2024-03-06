@@ -65,6 +65,15 @@ module.exports = function (grunt) {
         src: includeAllFiles,
         dest: 'docs',
       },
+      scripts: {
+        options: {
+          archive: backupsDestination + 'scripts.tar.gz',
+        },
+        expand: true,
+        cwd: './scripts/',
+        src: includeAllFiles,
+        dest: 'scripts',
+      },
       src: {
         options: {
           archive: backupsDestination + 'src.tar.gz',
@@ -143,6 +152,7 @@ module.exports = function (grunt) {
     'compress:main',
     'compress:apps',
     'compress:docs',
+    'compress:scripts',
     'compress:src',
     'compress:tests',
     'compress:tmp',
@@ -158,7 +168,7 @@ module.exports = function (grunt) {
 
   // tasks status (description)
   const myTasksStatus = [
-    'compress: main | apps | docs | src | tests | tmp | utils',
+    'compress: main | apps | docs | scripts | src | tests | tmp | utils',
     'copy: apps to dist',
     'minify: html | css | js | images',
   ];
