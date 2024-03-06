@@ -18,8 +18,8 @@ const create_prompt = [
 
 export async function create(pkgManager: string): Promise<boolean> {
   const create_answers = await inquirer.prompt(create_prompt);
-  const error_unknown_package_manager = '\n\nError: Unknown package manager';
-  const error_during_init = `Error during ${pkgManager} init:`;
+  const error_unknown_package_manager_msg = '\n\nError: Unknown package manager';
+  const error_during_init_msg = `Error during ${pkgManager} init:`;
 
   if (create_answers.create) {
     try {
@@ -43,14 +43,14 @@ export async function create(pkgManager: string): Promise<boolean> {
           pkgArgs.push('-y');
           break;
         default:
-          console.error(error_unknown_package_manager);
+          console.error(error_unknown_package_manager_msg);
           return false;
       }
 
       await execa(pkgCMD, pkgArgs);
       return true;
     } catch (error) {
-      console.error(error_during_init, error);
+      console.error(error_during_init_msg, error);
       return false;
     }
   } else {
