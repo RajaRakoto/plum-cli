@@ -7,6 +7,14 @@ import fs from 'fs';
 // ==============================
 
 /**
+ * @description A function that detect the package.json file in the current directory
+ */
+export function pkgFileDetector(): boolean {
+  const pkgFile = fs.existsSync('package.json');
+  return pkgFile ? true : false;
+}
+
+/**
  * @description A function that detects the package manager used in the current project
  * @returns The package manager detected in the current project
  */
@@ -58,7 +66,7 @@ export async function pkgUninstaller(
   const pkgManager = await pkgManagerDetector();
   if (!pkgManager) {
     console.error(
-      chalk.red(`\n\nNo package manager detected ${emoji.get('worried')} !`),
+      chalk.red(`\n\nNo package detected ${emoji.get('worried')} !`),
     );
     return;
   }
