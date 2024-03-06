@@ -21,22 +21,21 @@ const uninstall_prompt = [
   },
 ];
 
+const uninstall_start_msg = `start uninstallation using ${pkgManagerDetector()}, please wait ${emoji.get('cry')} ...`;
+const uninstall_cancel_msg = chalk.yellow(
+  `Uninstallation cancelled ${emoji.get('sweat_smile')} !`,
+);
+
 export async function uninstall(): Promise<void> {
   const uninstall_answers = await inquirer.prompt(uninstall_prompt);
   if (uninstall_answers.uninstall) {
-    console.log(
-      `start uninstallation using ${pkgManagerDetector()}, please wait ${emoji.get('cry')} ...`,
-    );
-
+    console.log(uninstall_start_msg);
     const spinner = ora('Uninstalling plum package ...');
     spinner.start();
-
     devMode ? await pkgUninstaller() : await pkgUninstaller(plumPackageName);
     restart(spinner);
   } else {
-    console.log(
-      chalk.yellow(`Uninstallation cancelled ${emoji.get('sweat_smile')} !`),
-    );
+    console.log(uninstall_cancel_msg);
     restart();
   }
 }
