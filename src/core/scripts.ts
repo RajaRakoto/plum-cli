@@ -10,6 +10,9 @@ import { restart } from './restart';
 
 // ==============================
 
+const scripts_path = './scripts/';
+const scripts_default_folder = './plum-scripts';
+
 const scripts_prompt = [
   {
     type: 'input',
@@ -23,17 +26,14 @@ const scripts_prompt = [
 
 export async function scripts(fileName: string): Promise<void> {
   const scripts_answers = await inquirer.prompt(scripts_prompt);
+  const targetFolder = devMode
+    ? scripts_default_folder
+    : scripts_answers.scripts;
 
   switch (fileName) {
     case 'bootstrap':
-      devMode
-        ? copyFile('./scripts/bootstrap.min.js')
-        : copyFile('./scripts/bootstrap.min.js', scripts_answers.scripts);
-      break;
     case 'buttons2':
-      devMode
-        ? copyFile('./scripts/buttons2.min.js')
-        : copyFile('./scripts/buttons2.min.js', scripts_answers.scripts);
+      copyFile(`${scripts_path}${fileName}.min.js`, targetFolder);
       break;
     default:
       console.log(`${fileName} is not a recognized file !`);
