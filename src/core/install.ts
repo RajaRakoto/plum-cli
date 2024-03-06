@@ -64,6 +64,7 @@ const install_prompt = [
 
 export async function install(): Promise<void> {
   const install_answers = await inquirer.prompt(install_prompt);
+  const start_install_msg = `start installation using ${install_answers.pkgManager}, please wait ${emoji.get('wink')} ...`;
   let installProcess: boolean = true;
 
   // check if project exists
@@ -73,9 +74,7 @@ export async function install(): Promise<void> {
 
   // installation process
   if (installProcess && install_answers.install) {
-    console.log(
-      `start installation using ${install_answers.pkgManager}, please wait ${emoji.get('wink')} ...`,
-    );
+    console.log(start_install_msg);
 
     const spinner = ora('Installing plum package ...');
     spinner.start();
