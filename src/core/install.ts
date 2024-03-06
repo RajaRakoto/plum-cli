@@ -80,7 +80,10 @@ export async function install(): Promise<void> {
     spinner.start();
 
     switch (install_answers.pkgManager) {
-      case 'npm' || 'yarn' || 'pnpm' || 'bun':
+      case 'npm':
+      case 'yarn':
+      case 'pnpm':
+      case 'bun':
         devMode
           ? await pkgInstaller(install_answers.pkgManager)
           : await pkgInstaller(

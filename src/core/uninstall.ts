@@ -12,6 +12,11 @@ import { pkgUninstaller, pkgManagerDetector } from '../../utils/pkg';
 
 // ==============================
 
+const uninstall_start_msg = `start uninstallation using ${pkgManagerDetector()}, please wait ${emoji.get('cry')} ...`;
+const uninstall_cancel_msg = chalk.yellow(
+  `Uninstallation cancelled ${emoji.get('sweat_smile')} !`,
+);
+
 const uninstall_prompt = [
   {
     type: 'confirm',
@@ -20,11 +25,6 @@ const uninstall_prompt = [
     default: false,
   },
 ];
-
-const uninstall_start_msg = `start uninstallation using ${pkgManagerDetector()}, please wait ${emoji.get('cry')} ...`;
-const uninstall_cancel_msg = chalk.yellow(
-  `Uninstallation cancelled ${emoji.get('sweat_smile')} !`,
-);
 
 export async function uninstall(): Promise<void> {
   const uninstall_answers = await inquirer.prompt(uninstall_prompt);
