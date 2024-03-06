@@ -5,38 +5,24 @@ import { restart } from './restart';
 
 // ==============================
 
+const path_lists = {
+  animate: './apps/animate/index.html',
+  buttons2: './apps/buttons2/index.html',
+  flex: './apps/flex/index.html',
+  grid: './apps/grid/index.html',
+  hover2: './apps/hover2/index.html',
+  magic: './apps/magic/index.html',
+  buttons: './apps/buttons.html',
+  ocScheme: './apps/oc-scheme.png',
+  shadows: './apps/shadows.html',
+};
+
 export function app(name: string): void {
-  switch (name) {
-    case 'animate':
-      defaultOpen('./apps/animate/index.html');
-      break;
-    case 'buttons2':
-      defaultOpen('./apps/buttons2/index.html');
-      break;
-    case 'flex':
-      defaultOpen('./apps/flex/index.html');
-      break;
-    case 'grid':
-      defaultOpen('./apps/grid/index.html');
-      break;
-    case 'hover2':
-      defaultOpen('./apps/hover2/index.html');
-      break;
-    case 'magic':
-      defaultOpen('./apps/magic/index.html');
-      break;
-    case 'buttons':
-      defaultOpen('./apps/buttons.html');
-      break;
-    case 'oc-scheme':
-      defaultOpen('./apps/oc-scheme.png');
-      break;
-    case 'shadows':
-      defaultOpen('./apps/shadows.html');
-      break;
-    default:
-      console.log('Nothing app selected !');
-      break;
+  const path = path_lists[name as keyof typeof path_lists];
+  if (path) {
+    defaultOpen(path);
+  } else {
+    console.log('Nothing app selected !');
   }
   restart();
 }
