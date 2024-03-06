@@ -81,28 +81,14 @@ export async function install(): Promise<void> {
     spinner.start();
 
     switch (install_answers.pkgManager) {
-      case 'npm':
+      case 'npm' || 'yarn' || 'pnpm' || 'bun':
         devMode
-          ? await pkgInstaller('npm')
-          : await pkgInstaller('npm', true, plumPackageName);
-        await restart(spinner);
-        break;
-      case 'yarn':
-        devMode
-          ? await pkgInstaller('yarn')
-          : await pkgInstaller('yarn', true, plumPackageName);
-        await restart(spinner);
-        break;
-      case 'pnpm':
-        devMode
-          ? await pkgInstaller('pnpm')
-          : await pkgInstaller('pnpm', true, plumPackageName);
-        await restart(spinner);
-        break;
-      case 'bun':
-        devMode
-          ? await pkgInstaller('bun', true)
-          : await pkgInstaller('bun', true, plumPackageName);
+          ? await pkgInstaller(install_answers.pkgManager)
+          : await pkgInstaller(
+              install_answers.pkgManager,
+              true,
+              plumPackageName,
+            );
         await restart(spinner);
         break;
       default:
