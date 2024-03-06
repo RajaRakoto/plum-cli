@@ -6,9 +6,14 @@ import ora from 'ora';
 /* index */
 import { plumPackageName, devMode } from '..';
 /* core */
+import { create } from './create';
 import { restart } from './restart';
 /* utils */
-import { pkgInstaller, pkgManagerDetector } from '../../utils/pkg';
+import {
+  pkgInstaller,
+  pkgFileDetector,
+  pkgManagerDetector,
+} from '../../utils/pkg';
 /* types */
 interface I_install_answers {
   install: boolean;
@@ -59,9 +64,17 @@ const install_prompt = [
 
 export async function install(): Promise<void> {
   const install_answers = await inquirer.prompt(install_prompt);
-  if (install_answers.install) {
+  let installProcess: boolean = true;
+
+  // check if project exists
+  if (!pkgFileDetector() && !pkgManagerDetector() && install_answers.install) {
+    installProcess = await create(install_answers.pkgManager);
+  }
+
+  // installation process
+  if (installProcess && install_answers.install) {
     console.log(
-      `start installation using ${pkgManagerDetector()}, please wait ${emoji.get('wink')} ...`,
+      `start installation using ${install_answers.pkgManager}, please wait ${emoji.get('wink')} ...`,
     );
 
     const spinner = ora('Installing plum package ...');
@@ -99,5 +112,7 @@ export async function install(): Promise<void> {
         await restart(spinner);
         break;
     }
+  } else {
+    restart();
   }
 }
