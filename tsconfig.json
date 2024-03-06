@@ -3,7 +3,6 @@
 		"target": "ESNext",
 		"module": "ESNext",
 		"lib": ["ESNext", "DOM", "DOM.Iterable"],
-		"jsx": "react-jsx",
 		"verbatimModuleSyntax": true,
 		"moduleResolution": "bundler",
 		"moduleDetection": "force",
