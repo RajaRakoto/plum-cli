@@ -15,7 +15,7 @@
 ### 📌 Using 
 
 ```bash
-npm install -g @rajarakoto/plum-cli
+npm install -g @raja_rakoto/plum-cli
 ```
 
 <img src="https://github.com/RajaRakoto/github-docs/blob/master/plum/plum-cli-demo.gif?raw=true" width="800">
@@ -64,6 +64,7 @@ npm install -g @rajarakoto/plum-cli
 - 📜 `npm-version:major` - Increments the major version number of your project using npm.
 - 📜 `npm-version:minor` - Increments the minor version number of your project using npm.
 - 📜 `npm-version:patch` - Increments the version patch number of your project using npm.
+- 📜 `npm-login` - Login to a registry user account.
 - 📜 `npm-publish` - Publish your npm package with public access.
 - 📜 `npm-unpublish` - Forcefully unpublish the plum-cli package from npm.
 - 📜 `npm-reset:registry` - Delete the custom npm registry.
