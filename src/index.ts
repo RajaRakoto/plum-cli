@@ -17,7 +17,7 @@ import pkg from '../package.json';
 
 // ==============================
 
-export const plumPackageName = '@rajarakoto/plum';
+export const plumPackageName = '@raja_rakoto/plum';
 export const devMode = false;
 
 /**
