@@ -1,3 +1,7 @@
+<div align="center">
+<img src="https://github.com/RajaRakoto/github-docs/blob/master/plum/plum-gray.png?raw=true" width=256>
+</div>
+
 # plum-cli 🩷
 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/for-you.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/open-source.svg)](https://forthebadge.com) [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com) [![forthebadge](https://github.com/RajaRakoto/github-docs/blob/master/badge/build-by.svg?raw=true)](https://forthebadge.com) 
@@ -55,9 +59,6 @@ npm install -g @rajarakoto/plum-cli
 
 **Versioning**
 - 📜 `versioning` - Start ungit server.
-- 📜 `version-major` - Increments the major version number of your project.
-- 📜 `version-minor` - Increments the minor version number of your project.
-- 📜 `version-patch` - Increments the version patch number of your project.
 
 **npm Commands**
 - 📜 `npm-version:major` - Increments the major version number of your project using npm.
