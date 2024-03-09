@@ -25,13 +25,8 @@ export const devMode = false;
  */
 export async function plumCLI(): Promise<void> {
   // show banner
-  try {
-    const banner = await bannerRenderer('plum-cli');
-    console.log(`${banner}\n`);
-  } catch (error) {
-    console.error('Error: ASCII banner rendering failed !');
-    console.dir(error);
-  }
+  const banner = await bannerRenderer('plum-cli');
+  console.log(`${banner}\n`);
 
   // start menu
   const menu_answers = await inquirer.prompt(menu_prompt);
