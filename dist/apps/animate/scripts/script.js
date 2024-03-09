@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){const n=document.querySelector(".demo");document.querySelectorAll(".animation-trigger").forEach(function(t){t.addEventListener("click",function(){var e=t.getAttribute("data-animation");n.querySelector("h2").classList="",n.querySelector("h2").classList.add(e)})})});
