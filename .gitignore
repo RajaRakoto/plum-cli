@@ -86,8 +86,5 @@ typings
 .tern-port
 
 # own
-apps
-docs
-scripts
 backups
 tmp
