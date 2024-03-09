@@ -65,6 +65,15 @@ module.exports = function (grunt) {
         src: includeAllFiles,
         dest: 'docs',
       },
+      fonts: {
+        options: {
+          archive: backupsDestination + 'fonts.tar.gz',
+        },
+        expand: true,
+        cwd: './fonts/',
+        src: includeAllFiles,
+        dest: 'fonts',
+      },
       scripts: {
         options: {
           archive: backupsDestination + 'scripts.tar.gz',
@@ -116,7 +125,7 @@ module.exports = function (grunt) {
      */
     shell: {
       copyDistDeps: {
-        command: ['cp -r apps dist', 'cp -r docs dist', 'cp -r scripts dist'].join('&&'),
+        command: ['cp -r apps dist', 'cp -r docs dist', 'cp -r scripts dist', 'cp -r fonts dist'].join('&&'),
       },
     },
     /**
