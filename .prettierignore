@@ -91,6 +91,9 @@ typings
 # own
 backups
 tmp
+apps
+docs
+scripts
 .github
 .eslintignore
 .eslintrc
