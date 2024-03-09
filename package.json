@@ -1,5 +1,5 @@
 {
-  "name": "@raja_rakoto/plum-cli",
+  "name": "@raja-rakoto/plum-cli",
   "version": "1.0.0",
   "description": "Streamline your web development process with Plum CLI: Effortlessly integrate the Plum package, access offline documentation and unlock a suite of applications for better use of third-party modules ... 🩷",
   "author": "Raja Rakotonirina <raja.rakoto7@gmail.com>",
@@ -59,13 +59,13 @@
     "npm-version:patch": "npm version patch",
     "npm-login": "npm login",
     "npm-publish": "npm publish --access public",
-    "npm-unpublish": "npm unpublish --force @raja_rakoto/plum-cli",
+    "npm-unpublish": "npm unpublish --force @raja-rakoto/plum-cli",
     "npm-reset:registry": "npm config delete registry",
     "npm-check:registry": "npm config get registry",
     "npm-proxy-set:registry": "npm set registry http://localhost:4873/",
     "npm-proxy:start": "bun run npm-proxy-set:registry && verdaccio",
     "npm-proxy:publish": "npm publish --registry http://localhost:4873/",
-    "npm-proxy:unpublish": "npm unpublish --force --registry http://localhost:4873/ @raja_rakoto/plum-cli",
+    "npm-proxy:unpublish": "npm unpublish --force --registry http://localhost:4873/ @raja-rakoto/plum-cli",
     "npm-proxy:republish": "bun run npm-proxy:unpublish && bun run npm-proxy:publish"
   },
   "dependencies": {
