@@ -10,7 +10,11 @@ import { resolveRealPath } from './extras';
 
 // ==============================
 
-const font = fs.readFileSync(resolveRealPath('./fonts/Standard.flf'), 'utf8');
+const devMode = false;
+const fontPath = devMode
+  ? './fonts/Standard.flf'
+  : resolveRealPath('./fonts/Standard.flf');
+const font = fs.readFileSync(fontPath, 'utf8');
 figlet.parseFont('StandardFont', font);
 
 /**
