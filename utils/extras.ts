@@ -1,8 +1,9 @@
 /* libs */
 import * as emoji from 'node-emoji';
+import * as path from 'path';
+import open from 'open';
 import { execa } from 'execa';
 import fs from 'fs';
-import * as path from 'path';
 import { devMode } from '../src';
 
 // ==============================
@@ -54,7 +55,9 @@ export async function defaultOpen(filePath: string): Promise<void> {
         return;
     }
 
-    await execa(execCMD, [realPath]);
+    execCMD === 'start'
+      ? await open(realPath)
+      : await execa(execCMD, [realPath]);
   } catch (error) {
     console.error('\n\nError during opening:', error);
   }
