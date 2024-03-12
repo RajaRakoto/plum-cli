@@ -66,11 +66,11 @@ npm install -g @raja-rakoto/plum-cli
 - 📜 `npm-version:patch` - Increments the version patch number of your project using npm.
 - 📜 `npm-login` - Login to a registry user account.
 - 📜 `npm-publish` - Publish your npm package with public access.
-- 📜 `npm-unpublish` - Forcefully unpublish the plum-cli package from npm.
+- 📜 `npm-unpublish` - Forcefully unpublish the cli package from npm.
 - 📜 `npm-reset:registry` - Delete the custom npm registry.
 - 📜 `npm-check:registry` - Get the currently configured registry for npm.
 - 📜 `npm-proxy-set:registry` - Set the npm registry to use a local proxy.
 - 📜 `npm-proxy:start` - Start a Verdaccio server with a local npm proxy.
 - 📜 `npm-proxy:publish` - Publish your npm package via the local proxy.
-- 📜 `npm-proxy:unpublish` - Forcefully unpublish the plum-cli package from the npm registry via the local proxy.
+- 📜 `npm-proxy:unpublish` - Forcefully unpublish the cli package from the npm registry via the local proxy.
 - 📜 `npm-proxy:republish` - Republish your npm package by first unpublishing it and then publishing it again via the local proxy.
