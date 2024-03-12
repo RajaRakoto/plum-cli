@@ -15,6 +15,7 @@
     "type": "git",
     "url": "git+https://github.com/RajaRakoto/plum-cli.git"
   },
+  "homepage": "https://github.com/RajaRakoto/plum-cli#readme",
   "bugs": "https://github.com/RajaRakoto/plum-cli/issues",
   "files": [
     "dist"
