@@ -7,7 +7,7 @@ await Bun.build({
   minify: true,
   splitting: false,
   sourcemap: 'external',
-  target: 'node',
+  target: 'node', // or 'bun', 'browser'
   plugins: [dts()],
 }).catch(console.error)
 
