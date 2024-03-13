@@ -178,7 +178,7 @@ module.exports = function (grunt) {
   // tasks status (description)
   const myTasksStatus = [
     'compress: main | apps | docs | scripts | src | tests | tmp | utils',
-    'copy: apps to dist',
+    'copy: apps | docs | scripts | fonts -> dist',
     'minify: html | css | js | images',
   ];
 
