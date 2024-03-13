@@ -121,7 +121,7 @@ module.exports = function (grunt) {
       },
     },
     /**
-     * Copy apps to dist
+     * Copy dist deps
      */
     shell: {
       copyDistDeps: {
