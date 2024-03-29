@@ -6,9 +6,9 @@
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "tsconfig.json",
+    "project": "./tsconfig.json",
     "sourceType": "module",
-    "ecmaVersion": 2020
+    "ecmaVersion": "latest"
   },
   "plugins": ["@typescript-eslint", "jest"],
   "extends": [
@@ -17,7 +17,13 @@
     "plugin:jest/recommended",
     "prettier"
   ],
+  "overrides": [
+    {
+      "files": ["*.{js,cjs,mjs,ts,mts,jsx,tsx}"]
+    }
+  ],
   "rules": {
+    "no-unused-vars": "warn",
     "@typescript-eslint/explicit-function-return-type": "warn"
   }
 }
