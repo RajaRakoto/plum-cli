@@ -1,12 +1,16 @@
 /* libs */
 import inquirer from 'inquirer';
 import chalk from 'chalk';
+
 /* index */
-import { plumCLI } from '..';
+import { plumCLI } from '@/index';
+
 /* utils */
-import { exitCLI } from '../../utils/extras';
+import { exitCLI } from '@/utils/extras';
+
 /* types */
 import type { Ora } from 'ora';
+
 // ==============================
 
 const restart_prompt = [

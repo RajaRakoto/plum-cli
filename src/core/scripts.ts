@@ -1,17 +1,17 @@
 /* libs */
 import inquirer from 'inquirer';
 import chalk from 'chalk';
-/* index */
-import { devMode } from '..';
+
 /* utils */
-import { copyFile } from '../../utils/extras';
+import { copyFile } from '@/utils/extras';
+
 /* core */
-import { restart } from './restart';
+import { restart } from '@/core/restart';
+
+/* constants */
+import { DEVMODE, SCRIPTS_DEFAULT_FOLDER, SCRIPTS_PATH } from '@/constants';
 
 // ==============================
-
-const scripts_path = './scripts/';
-const scripts_default_folder = './plum-scripts';
 
 const scripts_prompt = [
   {
@@ -26,14 +26,14 @@ const scripts_prompt = [
 
 export async function scripts(fileName: string): Promise<void> {
   const scripts_answers = await inquirer.prompt(scripts_prompt);
-  const targetFolder = devMode
-    ? scripts_default_folder
+  const targetFolder = DEVMODE
+    ? SCRIPTS_DEFAULT_FOLDER
     : scripts_answers.scripts;
 
   switch (fileName) {
     case 'bootstrap':
     case 'buttons2':
-      copyFile(`${scripts_path}${fileName}.min.js`, targetFolder);
+      copyFile(`${SCRIPTS_PATH}${fileName}.min.js`, targetFolder);
       break;
     default:
       console.log(`${fileName} is not a recognized file !`);

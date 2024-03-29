@@ -3,22 +3,24 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import * as emoji from 'node-emoji';
 import ora from 'ora';
-/* index */
-import { plumPackageName, devMode } from '..';
+
 /* core */
-import { create } from './create';
-import { restart } from './restart';
+import { create } from '@/core/create';
+import { restart } from '@/core/restart';
+
 /* utils */
 import {
   pkgInstaller,
   pkgFileDetector,
   pkgManagerDetector,
-} from '../../utils/pkg';
+} from '@/utils/pkg';
+
+/* constants */
+import { PLUM_PACKAGENAME, DEVMODE } from '@/constants';
+
 /* types */
-interface I_install_answers {
-  install: boolean;
-  pkgManager: string;
-}
+import { I_install_answers } from '@/@types';
+
 // ==============================
 
 const packageLists = ['npm', 'yarn', 'pnpm', 'bun'].map((pkg) => {
@@ -84,19 +86,19 @@ export async function install(): Promise<void> {
       case 'yarn':
       case 'pnpm':
       case 'bun':
-        devMode
+        DEVMODE
           ? await pkgInstaller(install_answers.pkgManager, true)
           : await pkgInstaller(
               install_answers.pkgManager,
               false,
-              plumPackageName,
+              PLUM_PACKAGENAME,
             );
         await restart(spinner);
         break;
       default:
-        devMode
+        DEVMODE
           ? await pkgInstaller('npm', true)
-          : await pkgInstaller('npm', false, plumPackageName);
+          : await pkgInstaller('npm', false, PLUM_PACKAGENAME);
         await restart(spinner);
         break;
     }

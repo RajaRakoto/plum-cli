@@ -1,7 +1,8 @@
 /* utils */
-import { defaultOpen } from '../../utils/extras';
+import { defaultOpen } from '@/utils/extras';
+
 /* core */
-import { restart } from './restart';
+import { restart } from '@/core/restart';
 
 // ==============================
 

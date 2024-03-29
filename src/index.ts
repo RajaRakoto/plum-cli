@@ -2,24 +2,25 @@
 import inquirer from 'inquirer';
 import { Command } from 'commander';
 import * as emoji from 'node-emoji';
+
 /* menu */
-import { menu_prompt } from './menu';
+import { menu_prompt } from '@/menu';
+
 /* core */
-import { app } from './core/app';
-import { docs } from './core/docs';
-import { install } from './core/install';
-import { uninstall } from './core/uninstall';
-import { scripts } from './core/scripts';
+import { app } from '@/core/app';
+import { docs } from '@/core/docs';
+import { install } from '@/core/install';
+import { uninstall } from '@/core/uninstall';
+import { scripts } from '@/core/scripts';
+
 /* utils */
-import { bannerRenderer } from '../utils/ascii';
-import { exitCLI } from '../utils/extras';
+import { bannerRenderer } from '@/utils/ascii';
+import { exitCLI } from '@/utils/extras';
+
 /* files */
 import pkg from '../package.json';
 
 // ==============================
-
-export const plumPackageName = '@raja-rakoto/plum';
-export const devMode = false;
 
 /**
  * @description Entry point of the CLI

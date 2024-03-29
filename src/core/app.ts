@@ -1,24 +1,16 @@
 /* utils */
-import { defaultOpen } from '../../utils/extras';
+import { defaultOpen } from '@/utils/extras';
+
 /* core */
-import { restart } from './restart';
+import { restart } from '@/core/restart';
+
+/* constants */
+import { PATH_LISTS } from '@/constants';
 
 // ==============================
 
-const path_lists = {
-  animate: './apps/animate/index.html',
-  buttons2: './apps/buttons2/index.html',
-  flex: './apps/flex/index.html',
-  grid: './apps/grid/index.html',
-  hover2: './apps/hover2/index.html',
-  magic: './apps/magic/index.html',
-  buttons: './apps/buttons.html',
-  'oc-scheme': './apps/oc-scheme.png',
-  shadows: './apps/shadows.html',
-};
-
 export function app(name: string): void {
-  const path = path_lists[name as keyof typeof path_lists];
+  const path = PATH_LISTS[name as keyof typeof PATH_LISTS];
   if (path) {
     defaultOpen(path);
   } else {
