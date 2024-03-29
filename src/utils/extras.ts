@@ -4,7 +4,9 @@ import * as path from 'path';
 import open from 'open';
 import { execa } from 'execa';
 import fs from 'fs';
-import { devMode } from '../src';
+
+/* constants */
+import { DEVMODE } from '@/constants';
 
 // ==============================
 
@@ -34,7 +36,7 @@ export function resolveRealPath(relativePath: string): string {
 export async function defaultOpen(filePath: string): Promise<void> {
   try {
     const platform = process.platform;
-    const realPath = devMode ? filePath : resolveRealPath(filePath);
+    const realPath = DEVMODE ? filePath : resolveRealPath(filePath);
     let execCMD: string = '';
 
     switch (platform) {
@@ -72,7 +74,7 @@ export function copyFile(
   source: string,
   target: string = './plum-scripts',
 ): void {
-  const realSource = devMode ? source : resolveRealPath(source);
+  const realSource = DEVMODE ? source : resolveRealPath(source);
   const targetDir = path.resolve(path.join(process.cwd(), target));
 
   if (!fs.existsSync(targetDir)) {
