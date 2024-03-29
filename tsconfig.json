@@ -7,7 +7,7 @@
 		"moduleResolution": "bundler",
 		"moduleDetection": "force",
 		"rootDir": ".",
-		"outDir": "dist",
+		"outDir": "./dist",
 		"useDefineForClassFields": true,
 		"allowImportingTsExtensions": true,
 		"allowSyntheticDefaultImports": true,
@@ -28,8 +28,14 @@
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
-		"isolatedModules": true
+		"isolatedModules": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": false,
+		"noUncheckedIndexedAccess": false,
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	},
-	"include": ["src/**/*", "tests/**/*", "utils/**/*"],
-	"exclude": ["node_modules"]
+	"include": ["*.ts", "**/*.ts"],
+	"exclude": ["./node_modules"]
 }
