@@ -1,108 +1,100 @@
 /* libs */
-import inquirer from 'inquirer';
-import chalk from 'chalk';
-import * as emoji from 'node-emoji';
-import ora from 'ora';
+import inquirer from "inquirer";
+import chalk from "chalk";
+import * as emoji from "node-emoji";
+import ora from "ora";
 
 /* core */
-import { create } from '@/core/create';
-import { restart } from '@/core/restart';
+import { create } from "@/core/create";
+import { restart } from "@/core/restart";
 
 /* utils */
-import {
-  pkgInstaller,
-  pkgFileDetector,
-  pkgManagerDetector,
-} from '@/utils/pkg';
+import { pkgInstaller, pkgFileDetector, pkgManagerDetector } from "@/utils/pkg";
 
 /* constants */
-import { PLUM_PACKAGE, DEVMODE } from '@/constants';
+import { PLUM_PACKAGE, DEVMODE } from "@/constants";
 
 /* types */
-import { I_install_answers } from '@/@types';
+import { I_install_answers } from "@/@types";
 
 // ==============================
 
-const packageLists = ['npm', 'yarn', 'pnpm', 'bun'].map((pkg) => {
-  return `${emoji.get('package')} ${pkg}`;
+const packageLists = ["npm", "yarn", "pnpm", "bun"].map((pkg) => {
+	return `${emoji.get("package")} ${pkg}`;
 });
 
 const install_prompt = [
-  {
-    type: 'confirm',
-    name: 'install',
-    message: chalk.green(
-      'Do you want to install plum package in the current directory ?',
-    ),
-    default: true,
-  },
-  {
-    type: 'list',
-    name: 'pkgManager',
-    message: chalk.green('Install plum package with:'),
-    loop: true,
-    choices: [
-      {
-        name: packageLists[0],
-        value: 'npm',
-      },
-      {
-        name: packageLists[1],
-        value: 'yarn',
-      },
-      {
-        name: packageLists[2],
-        value: 'pnpm',
-      },
-      {
-        name: packageLists[3],
-        value: 'bun',
-      },
-    ],
-    default: 'npm',
-    when: (answers: I_install_answers): boolean => answers.install,
-  },
+	{
+		type: "confirm",
+		name: "install",
+		message: chalk.green(
+			"Do you want to install plum package in the current directory ?",
+		),
+		default: true,
+	},
+	{
+		type: "list",
+		name: "pkgManager",
+		message: chalk.green("Install plum package with:"),
+		loop: true,
+		choices: [
+			{
+				name: packageLists[0],
+				value: "npm",
+			},
+			{
+				name: packageLists[1],
+				value: "yarn",
+			},
+			{
+				name: packageLists[2],
+				value: "pnpm",
+			},
+			{
+				name: packageLists[3],
+				value: "bun",
+			},
+		],
+		default: "npm",
+		when: (answers: I_install_answers): boolean => answers.install,
+	},
 ];
 
 export async function install(): Promise<void> {
-  const install_answers = await inquirer.prompt(install_prompt);
-  const start_install_msg = `start installation using ${install_answers.pkgManager}, please wait ${emoji.get('wink')} ...`;
-  let installProcess: boolean = true;
+	const install_answers = await inquirer.prompt(install_prompt);
+	const start_install_msg = `start installation using ${install_answers.pkgManager}, please wait ${emoji.get("wink")} ...`;
+	let installProcess: boolean = true;
 
-  // check if project exists
-  if (!pkgFileDetector() && !pkgManagerDetector() && install_answers.install) {
-    installProcess = await create(install_answers.pkgManager);
-  }
+	// check if project exists
+	if (!pkgFileDetector() && !pkgManagerDetector() && install_answers.install) {
+		installProcess = await create(install_answers.pkgManager);
+	}
 
-  // installation process
-  if (installProcess && install_answers.install) {
-    console.log(start_install_msg);
+	// installation process
+	if (installProcess && install_answers.install) {
+		console.log(start_install_msg);
 
-    const spinner = ora('Installing plum package ...');
-    spinner.start();
+		const spinner = ora("Installing plum package ...");
+		spinner.start();
 
-    switch (install_answers.pkgManager) {
-      case 'npm':
-      case 'yarn':
-      case 'pnpm':
-      case 'bun':
-        DEVMODE
-          ? await pkgInstaller(install_answers.pkgManager, true)
-          : await pkgInstaller(
-              install_answers.pkgManager,
-              false,
-              PLUM_PACKAGE,
-            );
-        await restart(spinner);
-        break;
-      default:
-        DEVMODE
-          ? await pkgInstaller('npm', true)
-          : await pkgInstaller('npm', false, PLUM_PACKAGE);
-        await restart(spinner);
-        break;
-    }
-  } else {
-    restart();
-  }
+		switch (install_answers.pkgManager) {
+			case "npm":
+			case "yarn":
+			case "pnpm":
+			case "bun":
+				DEVMODE
+					? await pkgInstaller(install_answers.pkgManager, true)
+					: await pkgInstaller(install_answers.pkgManager, false, PLUM_PACKAGE);
+				await restart(spinner);
+				break;
+			default:
+				DEVMODE
+					? await pkgInstaller("npm", true)
+					: await pkgInstaller("npm", false, PLUM_PACKAGE);
+				await restart(spinner);
+				break;
+		}
+	} else {
+		restart();
+	}
 }

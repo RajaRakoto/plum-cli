@@ -1,12 +1,12 @@
 /* libs */
-import * as emoji from 'node-emoji';
-import * as path from 'path';
-import open from 'open';
-import { execa } from 'execa';
-import fs from 'fs';
+import * as emoji from "node-emoji";
+import * as path from "path";
+import open from "open";
+import { execa } from "execa";
+import fs from "fs";
 
 /* constants */
-import { DEVMODE, SCRIPTS_DEFAULTFOLDER_PATH } from '@/constants';
+import { DEVMODE, SCRIPTS_DEFAULTFOLDER_PATH } from "@/constants";
 
 // ==============================
 
@@ -14,8 +14,8 @@ import { DEVMODE, SCRIPTS_DEFAULTFOLDER_PATH } from '@/constants';
  * @description A function that exits the CLI
  */
 export function exitCLI(): void {
-  console.log(`See you soon ${emoji.get('blush')} !`);
-  process.exit();
+	console.log(`See you soon ${emoji.get("blush")} !`);
+	process.exit();
 }
 
 /**
@@ -24,9 +24,9 @@ export function exitCLI(): void {
  * @returns The real path of the file
  */
 export function resolveRealPath(relativePath: string): string {
-  const sourceIndex = fs.realpathSync(process.argv[1]);
-  const realPath = path.join(path.dirname(sourceIndex), relativePath);
-  return realPath;
+	const sourceIndex = fs.realpathSync(process.argv[1]);
+	const realPath = path.join(path.dirname(sourceIndex), relativePath);
+	return realPath;
 }
 
 /**
@@ -34,35 +34,35 @@ export function resolveRealPath(relativePath: string): string {
  * @param filePath The path of the file to open
  */
 export async function defaultOpen(filePath: string): Promise<void> {
-  try {
-    const platform = process.platform;
-    const realPath = DEVMODE ? filePath : resolveRealPath(filePath);
-    let execCMD: string = '';
+	try {
+		const platform = process.platform;
+		const realPath = DEVMODE ? filePath : resolveRealPath(filePath);
+		let execCMD: string = "";
 
-    switch (platform) {
-      case 'win32':
-        execCMD = 'start';
-        break;
-      case 'darwin':
-        execCMD = 'open';
-        break;
-      case 'linux':
-      case 'freebsd':
-      case 'openbsd':
-      case 'sunos':
-        execCMD = 'xdg-open';
-        break;
-      default:
-        console.error('\n\nError: Unsupported OS');
-        return;
-    }
+		switch (platform) {
+			case "win32":
+				execCMD = "start";
+				break;
+			case "darwin":
+				execCMD = "open";
+				break;
+			case "linux":
+			case "freebsd":
+			case "openbsd":
+			case "sunos":
+				execCMD = "xdg-open";
+				break;
+			default:
+				console.error("\n\nError: Unsupported OS");
+				return;
+		}
 
-    execCMD === 'start'
-      ? await open(realPath)
-      : await execa(execCMD, [realPath]);
-  } catch (error) {
-    console.error('\n\nError during opening:', error);
-  }
+		execCMD === "start"
+			? await open(realPath)
+			: await execa(execCMD, [realPath]);
+	} catch (error) {
+		console.error("\n\nError during opening:", error);
+	}
 }
 
 /**
@@ -71,16 +71,16 @@ export async function defaultOpen(filePath: string): Promise<void> {
  * @param target The target file
  */
 export function copyFile(
-  source: string,
-  target: string = SCRIPTS_DEFAULTFOLDER_PATH,
+	source: string,
+	target: string = SCRIPTS_DEFAULTFOLDER_PATH,
 ): void {
-  const realSource = DEVMODE ? source : resolveRealPath(source);
-  const targetDir = path.resolve(path.join(process.cwd(), target));
+	const realSource = DEVMODE ? source : resolveRealPath(source);
+	const targetDir = path.resolve(path.join(process.cwd(), target));
 
-  if (!fs.existsSync(targetDir)) {
-    fs.mkdirSync(targetDir, { recursive: true });
-  }
+	if (!fs.existsSync(targetDir)) {
+		fs.mkdirSync(targetDir, { recursive: true });
+	}
 
-  const targetFile = path.join(targetDir, path.basename(source));
-  fs.copyFileSync(realSource, targetFile);
+	const targetFile = path.join(targetDir, path.basename(source));
+	fs.copyFileSync(realSource, targetFile);
 }
