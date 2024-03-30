@@ -11,7 +11,7 @@ import { restart } from '@/core/restart';
 import { pkgUninstaller, pkgManagerDetector } from '@/utils/pkg';
 
 /* constants */
-import { PLUM_PACKAGENAME, DEVMODE } from '@/constants';
+import { PLUM_PACKAGE, DEVMODE } from '@/constants';
 
 // ==============================
 
@@ -35,7 +35,7 @@ export async function uninstall(): Promise<void> {
     console.log(uninstall_start_msg);
     const spinner = ora('Uninstalling plum package ...');
     spinner.start();
-    DEVMODE ? await pkgUninstaller() : await pkgUninstaller(PLUM_PACKAGENAME);
+    DEVMODE ? await pkgUninstaller() : await pkgUninstaller(PLUM_PACKAGE);
     restart(spinner);
   } else {
     console.log(uninstall_cancel_msg);

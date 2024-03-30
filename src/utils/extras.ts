@@ -6,7 +6,7 @@ import { execa } from 'execa';
 import fs from 'fs';
 
 /* constants */
-import { DEVMODE } from '@/constants';
+import { DEVMODE, SCRIPTS_DEFAULTFOLDER_PATH } from '@/constants';
 
 // ==============================
 
@@ -72,7 +72,7 @@ export async function defaultOpen(filePath: string): Promise<void> {
  */
 export function copyFile(
   source: string,
-  target: string = './plum-scripts',
+  target: string = SCRIPTS_DEFAULTFOLDER_PATH,
 ): void {
   const realSource = DEVMODE ? source : resolveRealPath(source);
   const targetDir = path.resolve(path.join(process.cwd(), target));

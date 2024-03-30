@@ -16,7 +16,7 @@ import {
 } from '@/utils/pkg';
 
 /* constants */
-import { PLUM_PACKAGENAME, DEVMODE } from '@/constants';
+import { PLUM_PACKAGE, DEVMODE } from '@/constants';
 
 /* types */
 import { I_install_answers } from '@/@types';
@@ -91,14 +91,14 @@ export async function install(): Promise<void> {
           : await pkgInstaller(
               install_answers.pkgManager,
               false,
-              PLUM_PACKAGENAME,
+              PLUM_PACKAGE,
             );
         await restart(spinner);
         break;
       default:
         DEVMODE
           ? await pkgInstaller('npm', true)
-          : await pkgInstaller('npm', false, PLUM_PACKAGENAME);
+          : await pkgInstaller('npm', false, PLUM_PACKAGE);
         await restart(spinner);
         break;
     }

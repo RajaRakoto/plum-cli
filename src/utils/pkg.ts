@@ -4,6 +4,9 @@ import chalk from 'chalk';
 import * as emoji from 'node-emoji';
 import fs from 'fs';
 
+/* constants */
+import { DEV_PACKAGE } from '@/constants';
+
 // ==============================
 
 /**
@@ -41,7 +44,7 @@ export function pkgManagerDetector(): string | null {
 export async function pkgInstaller(
   pkgManager: string,
   dev: boolean = false,
-  pkg: string = '@nlekane/dummy-npm-package',
+  pkg: string = DEV_PACKAGE,
 ): Promise<void> {
   const commandOptions = dev ? ['--dev'] : [];
   const installCMD = pkgManager === 'yarn' ? 'add' : 'install';
@@ -61,7 +64,7 @@ export async function pkgInstaller(
  * @param pkg The package to uninstall (default: @nlekane/dummy-npm-package)
  */
 export async function pkgUninstaller(
-  pkg: string = '@nlekane/dummy-npm-package',
+  pkg: string = DEV_PACKAGE,
 ): Promise<void> {
   const pkgManager = await pkgManagerDetector();
   if (!pkgManager) {

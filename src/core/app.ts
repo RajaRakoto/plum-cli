@@ -5,12 +5,12 @@ import { defaultOpen } from '@/utils/extras';
 import { restart } from '@/core/restart';
 
 /* constants */
-import { PATH_LISTS } from '@/constants';
+import { APPS_PATH } from '@/constants';
 
 // ==============================
 
 export function app(name: string): void {
-  const path = PATH_LISTS[name as keyof typeof PATH_LISTS];
+  const path = APPS_PATH[name as keyof typeof APPS_PATH];
   if (path) {
     defaultOpen(path);
   } else {

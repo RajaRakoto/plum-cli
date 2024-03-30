@@ -9,7 +9,7 @@ import { copyFile } from '@/utils/extras';
 import { restart } from '@/core/restart';
 
 /* constants */
-import { DEVMODE, SCRIPTS_DEFAULT_FOLDER, SCRIPTS_PATH } from '@/constants';
+import { DEVMODE, SCRIPTS_DEFAULTFOLDER_PATH, SCRIPTS_PATH } from '@/constants';
 
 // ==============================
 
@@ -27,7 +27,7 @@ const scripts_prompt = [
 export async function scripts(fileName: string): Promise<void> {
   const scripts_answers = await inquirer.prompt(scripts_prompt);
   const targetFolder = DEVMODE
-    ? SCRIPTS_DEFAULT_FOLDER
+    ? SCRIPTS_DEFAULTFOLDER_PATH
     : scripts_answers.scripts;
 
   switch (fileName) {
