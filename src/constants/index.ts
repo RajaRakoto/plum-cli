@@ -8,7 +8,6 @@ export const DEV_PACKAGE = "@nlekane/dummy-npm-package";
 // path
 export const DOCS_PATH = "./docs/index.html";
 export const FONT_PATH = "./fonts/Standard.flf";
-export const SCRIPTS_DEFAULTFOLDER_PATH = "./plum-scripts";
 export const SCRIPTS_PATH = "./scripts/";
 export const APPS_PATH = {
 	animate: "./apps/animate/index.html",

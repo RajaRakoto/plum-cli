@@ -9,7 +9,7 @@ import { copyFileAsync } from "@/utils/extras";
 import { restartAsync } from "@/core/restart";
 
 /* constants */
-import { DEVMODE, SCRIPTS_DEFAULTFOLDER_PATH, SCRIPTS_PATH } from "@/constants";
+import { SCRIPTS_PATH } from "@/constants";
 
 // ==============================
 
