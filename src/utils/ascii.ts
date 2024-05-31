@@ -1,7 +1,6 @@
 /* libs */
 import figlet from "figlet";
 import chalk from "chalk";
-import fs from "fs";
 
 /* files */
 import pkg from "../../package.json";
@@ -10,13 +9,9 @@ import pkg from "../../package.json";
 import { DEVMODE, FONT_PATH } from "@/constants";
 
 /* utils */
-import { resolveRealPathAsync } from "@/utils/extras";
+import { resolveRealPathAsync, readFileAsync } from "@/utils/extras";
 
 // ==============================
-
-const fontSource = DEVMODE ? FONT_PATH : await resolveRealPathAsync(FONT_PATH);
-const font = fs.readFileSync(fontSource, "utf8");
-figlet.parseFont("StandardFont", font);
 
 /**
  * @description A function that renders a title + description as a banner using figlet ASCII art
@@ -27,17 +22,25 @@ export async function bannerRendererAsync(
 	title: string,
 	description: string,
 ): Promise<string> {
-	try {
-		const rendered = await figlet.textSync(title, {
-			font: "StandardFont" as figlet.Fonts,
-		});
-		const coloredBanner = chalk.magenta(rendered);
-		const packageVersion = pkg.version;
-		const result = `${coloredBanner}\n ${chalk.underline("version:")} ${packageVersion}\n\n ${description}`;
-		return result;
-	} catch (error) {
-		console.error("An error occurred while rendering the banner:", error);
-		console.dir(error);
-		return "";
-	}
+	const fontSource = DEVMODE
+		? FONT_PATH
+		: await resolveRealPathAsync(FONT_PATH);
+	const font = await readFileAsync(fontSource, "utf8");
+	figlet.parseFont("StandardFont", font);
+
+	return new Promise((resolve, reject) => {
+		try {
+			const rendered = figlet.textSync(title, {
+				font: "StandardFont" as figlet.Fonts,
+			});
+			const coloredBanner = chalk.red(rendered);
+			const packageVersion = pkg.version;
+			const result = `${coloredBanner}\n ${chalk.underline("version:")} ${packageVersion}\n\n ${description}`;
+			resolve(result);
+		} catch (error) {
+			reject(
+				`[error]: an error occurred while rendering the banner: \n${error}`,
+			);
+		}
+	});
 }
