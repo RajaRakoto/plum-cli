@@ -12,7 +12,7 @@
 
 ---
 
-### 📌 Using
+### 📌 Usage
 
 ```bash
 npm install -g @raja-rakoto/plum-cli
