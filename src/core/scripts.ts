@@ -3,10 +3,10 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 
 /* utils */
-import { copyFile } from "@/utils/extras";
+import { copyFileAsync } from "@/utils/extras";
 
 /* core */
-import { restart } from "@/core/restart";
+import { restartAsync } from "@/core/restart";
 
 /* constants */
 import { DEVMODE, SCRIPTS_DEFAULTFOLDER_PATH, SCRIPTS_PATH } from "@/constants";
@@ -33,10 +33,10 @@ export async function scripts(fileName: string): Promise<void> {
 	switch (fileName) {
 		case "bootstrap":
 		case "buttons2":
-			copyFile(`${SCRIPTS_PATH}${fileName}.min.js`, targetFolder);
+			copyFileAsync(`${SCRIPTS_PATH}${fileName}.min.js`, targetFolder);
 			break;
 		default:
 			console.log(`${fileName} is not a recognized file !`);
 	}
-	restart();
+	restartAsync();
 }

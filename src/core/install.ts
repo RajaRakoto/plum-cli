@@ -6,13 +6,13 @@ import ora from "ora";
 
 /* core */
 import { create } from "@/core/create";
-import { restart } from "@/core/restart";
-
-/* utils */
-import { pkgInstaller, pkgFileDetector, pkgManagerDetector } from "@/utils/pkg";
+import { restartAsync } from "@/core/restart";
 
 /* constants */
 import { PLUM_PACKAGE, DEVMODE } from "@/constants";
+
+/* utils */
+import { pkgInstaller, pkgFileDetector, pkgManagerDetector } from "@/utils/pkg";
 
 /* types */
 import { I_install_answers } from "@/@types";
@@ -85,16 +85,16 @@ export async function install(): Promise<void> {
 				DEVMODE
 					? await pkgInstaller(install_answers.pkgManager, true)
 					: await pkgInstaller(install_answers.pkgManager, false, PLUM_PACKAGE);
-				await restart(spinner);
+				await restartAsync(spinner);
 				break;
 			default:
 				DEVMODE
 					? await pkgInstaller("npm", true)
 					: await pkgInstaller("npm", false, PLUM_PACKAGE);
-				await restart(spinner);
+				await restartAsync(spinner);
 				break;
 		}
 	} else {
-		restart();
+		restartAsync();
 	}
 }

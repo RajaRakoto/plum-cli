@@ -5,7 +5,7 @@ import * as emoji from "node-emoji";
 import ora from "ora";
 
 /* core */
-import { restart } from "@/core/restart";
+import { restartAsync } from "@/core/restart";
 
 /* utils */
 import { pkgUninstaller, pkgManagerDetector } from "@/utils/pkg";
@@ -36,9 +36,9 @@ export async function uninstall(): Promise<void> {
 		const spinner = ora("Uninstalling plum package ...");
 		spinner.start();
 		DEVMODE ? await pkgUninstaller() : await pkgUninstaller(PLUM_PACKAGE);
-		restart(spinner);
+		restartAsync(spinner);
 	} else {
 		console.log(uninstall_cancel_msg);
-		restart();
+		restartAsync();
 	}
 }
