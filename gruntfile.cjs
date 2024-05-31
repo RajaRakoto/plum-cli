@@ -47,6 +47,15 @@ module.exports = function (grunt) {
 				files: [{ src: ["./*", "./.*"] }],
 				filter: "isFile",
 			},
+			github: {
+				options: {
+					archive: backupsDestination + "github.tar.gz",
+				},
+				expand: true,
+				cwd: "./.github/",
+				src: includeAllFiles,
+				dest: "github",
+			},
 			apps: {
 				options: {
 					archive: backupsDestination + "apps.tar.gz",
@@ -64,6 +73,15 @@ module.exports = function (grunt) {
 				cwd: "./docs/",
 				src: includeAllFiles,
 				dest: "docs",
+			},
+			examples: {
+				options: {
+					archive: backupsDestination + "examples.tar.gz",
+				},
+				expand: true,
+				cwd: "./examples/",
+				src: includeAllFiles,
+				dest: "examples",
 			},
 			fonts: {
 				options: {
@@ -110,15 +128,6 @@ module.exports = function (grunt) {
 				src: includeAllFiles,
 				dest: "tmp",
 			},
-			utils: {
-				options: {
-					archive: backupsDestination + "utils.tar.gz",
-				},
-				expand: true,
-				cwd: "./utils/",
-				src: includeAllFiles,
-				dest: "utils",
-			},
 		},
 		/**
 		 * Copy dist deps
@@ -164,13 +173,15 @@ module.exports = function (grunt) {
 	// all grunt register tasks
 	grunt.registerTask("backup", [
 		"compress:main",
+		"compress:github",
 		"compress:apps",
 		"compress:docs",
+		"compress:examples",
+		"compress:fonts",
 		"compress:scripts",
 		"compress:src",
 		"compress:tests",
 		"compress:tmp",
-		"compress:utils",
 	]);
 
 	grunt.registerTask("copy", ["shell:copyDistDeps"]);
@@ -182,7 +193,7 @@ module.exports = function (grunt) {
 
 	// tasks status (description)
 	const myTasksStatus = [
-		"compress: main | apps | docs | scripts | src | tests | tmp | utils",
+		"compress: main | github | apps | docs | examples | fonts | scripts | src | tests | tmp",
 		"copy: apps | docs | scripts | fonts > dist",
 		"minify: html | css | js | images",
 	];
