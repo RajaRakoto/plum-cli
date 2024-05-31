@@ -26,9 +26,7 @@ const scripts_prompt = [
 
 export async function scripts(fileName: string): Promise<void> {
 	const scripts_answers = await inquirer.prompt(scripts_prompt);
-	const targetFolder = DEVMODE
-		? SCRIPTS_DEFAULTFOLDER_PATH
-		: scripts_answers.scripts;
+	const targetFolder = scripts_answers.scripts;
 
 	switch (fileName) {
 		case "bootstrap":
