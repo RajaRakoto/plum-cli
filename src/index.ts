@@ -1,6 +1,6 @@
 /* libs */
-import inquirer from "inquirer";
 import { Command } from "commander";
+import inquirer from "inquirer";
 import * as emoji from "node-emoji";
 
 /* menu */
@@ -14,7 +14,7 @@ import { uninstall } from "@/core/uninstall";
 import { scripts } from "@/core/scripts";
 
 /* utils */
-import { bannerRenderer } from "@/utils/ascii";
+import { bannerRendererAsync } from "@/utils/ascii";
 import { exitCLI } from "@/utils/extras";
 
 /* files */
@@ -27,7 +27,7 @@ import pkg from "../package.json";
  */
 export async function plumCLI(): Promise<void> {
 	// show banner
-	const banner = await bannerRenderer(
+	const banner = await bannerRendererAsync(
 		"plum-cli",
 		`Customize your website faster with PLUM, a mixins toolset powered by SASS. Quickly produce consistent, scalable CSS output, regardless of project size ${emoji.get("purple_heart")}`,
 	);

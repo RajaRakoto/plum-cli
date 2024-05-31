@@ -10,11 +10,11 @@ import pkg from "../../package.json";
 import { DEVMODE, FONT_PATH } from "@/constants";
 
 /* utils */
-import { resolveRealPath } from "@/utils/extras";
+import { resolveRealPathAsync } from "@/utils/extras";
 
 // ==============================
 
-const fontSource = DEVMODE ? FONT_PATH : resolveRealPath(FONT_PATH);
+const fontSource = DEVMODE ? FONT_PATH : await resolveRealPathAsync(FONT_PATH);
 const font = fs.readFileSync(fontSource, "utf8");
 figlet.parseFont("StandardFont", font);
 
@@ -23,7 +23,7 @@ figlet.parseFont("StandardFont", font);
  * @param title The title to render
  * @param description The description to render
  */
-export async function bannerRenderer(
+export async function bannerRendererAsync(
 	title: string,
 	description: string,
 ): Promise<string> {

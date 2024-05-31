@@ -68,7 +68,7 @@ npm install -g @raja-rakoto/plum-cli
 
 - 📜 `versioning` - Start ungit server.
 
-**npm Commands**
+**NPM Commands**
 
 - 📜 `npm-version:major` - Increments the major version number of your project using npm.
 - 📜 `npm-version:minor` - Increments the minor version number of your project using npm.
@@ -83,3 +83,13 @@ npm install -g @raja-rakoto/plum-cli
 - 📜 `npm-proxy:publish` - Publish your npm package via the local proxy.
 - 📜 `npm-proxy:unpublish` - Forcefully unpublish the cli package from the npm registry via the local proxy.
 - 📜 `npm-proxy:republish` - Republish your npm package by first unpublishing it and then publishing it again via the local proxy.
+
+**NVM**
+
+- 📜 `nvm` - Manage multiple node.js versions. Easily switch between node versions per project to ensure compatibility.
+
+---
+
+### 📌 Build
+
+When using the **build.js** file in this boilerplate, it's important to note the significance of the **target** option. By default, if the target option is not specified in the **build.js** file, it will be set to `browser`. However, for projects utilizing the `bun.js` runtime environment, it's imperative to explicitly set the target to `bun`. This guarantees compatibility with the `bun` shell environment and prevents unexpected behavior. Furthermore, it's noteworthy that the `target` supports three possible values: `browser`, `bun`, and `node`, providing flexibility in defining the build target according to specific project requirements.
