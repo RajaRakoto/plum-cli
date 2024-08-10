@@ -2,7 +2,7 @@
  * @description: gruntfile for plum cli
  * @requires: grunt | load-grunt-tasks | grunt-contrib-compress | grunt-shell | grunt-contrib-htmlmin | grunt-contrib-cssmin | grunt-contrib-uglify | grunt-contrib-imagemin
  */
-module.exports = function (grunt) {
+module.exports = (grunt) => {
 	require("load-grunt-tasks")(grunt);
 
 	// all files destination (example)
@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 			expand: true,
 			cwd: folder,
 			src: ["**/*.{png,jpg,gif,svg}"],
-			dest: "dist/" + folder,
+			dest: `dist/${folder}`,
 		};
 	}
 
@@ -42,14 +42,14 @@ module.exports = function (grunt) {
 		compress: {
 			main: {
 				options: {
-					archive: backupsDestination + "main.tar.gz",
+					archive: `${backupsDestination}main.tar.gz`,
 				},
 				files: [{ src: ["./*", "./.*"] }],
 				filter: "isFile",
 			},
 			github: {
 				options: {
-					archive: backupsDestination + "github.tar.gz",
+					archive: `${backupsDestination}github.tar.gz`,
 				},
 				expand: true,
 				cwd: "./.github/",
@@ -58,7 +58,7 @@ module.exports = function (grunt) {
 			},
 			apps: {
 				options: {
-					archive: backupsDestination + "apps.tar.gz",
+					archive: `${backupsDestination}apps.tar.gz`,
 				},
 				expand: true,
 				cwd: "./apps/",
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
 			},
 			docs: {
 				options: {
-					archive: backupsDestination + "docs.tar.gz",
+					archive: `${backupsDestination}docs.tar.gz`,
 				},
 				expand: true,
 				cwd: "./docs/",
@@ -76,7 +76,7 @@ module.exports = function (grunt) {
 			},
 			examples: {
 				options: {
-					archive: backupsDestination + "examples.tar.gz",
+					archive: `${backupsDestination}examples.tar.gz`,
 				},
 				expand: true,
 				cwd: "./examples/",
@@ -85,7 +85,7 @@ module.exports = function (grunt) {
 			},
 			fonts: {
 				options: {
-					archive: backupsDestination + "fonts.tar.gz",
+					archive: `${backupsDestination}fonts.tar.gz`,
 				},
 				expand: true,
 				cwd: "./fonts/",
@@ -94,7 +94,7 @@ module.exports = function (grunt) {
 			},
 			scripts: {
 				options: {
-					archive: backupsDestination + "scripts.tar.gz",
+					archive: `${backupsDestination}scripts.tar.gz`,
 				},
 				expand: true,
 				cwd: "./scripts/",
@@ -103,7 +103,7 @@ module.exports = function (grunt) {
 			},
 			src: {
 				options: {
-					archive: backupsDestination + "src.tar.gz",
+					archive: `${backupsDestination}src.tar.gz`,
 				},
 				expand: true,
 				cwd: "./src/",
@@ -112,7 +112,7 @@ module.exports = function (grunt) {
 			},
 			tests: {
 				options: {
-					archive: backupsDestination + "tests.tar.gz",
+					archive: `${backupsDestination}tests.tar.gz`,
 				},
 				expand: true,
 				cwd: "./tests/",
@@ -121,7 +121,7 @@ module.exports = function (grunt) {
 			},
 			tmp: {
 				options: {
-					archive: backupsDestination + "tmp.tar.gz",
+					archive: `${backupsDestination}tmp.tar.gz`,
 				},
 				expand: true,
 				cwd: "./tmp/",
@@ -216,25 +216,25 @@ module.exports = function (grunt) {
 				case "cyan":
 					console.log(`\n${taskTitle}`.cyan.inverse.bold);
 					taskNames.forEach((taskNames, index) => {
-						console.log(taskNames.cyan + ` -> ${taskStatus[index]}`);
+						console.log(`${taskNames.cyan} -> ${taskStatus[index]}`);
 					});
 					break;
 				case "magenta":
 					console.log(`\n${taskTitle}`.magenta.inverse.bold);
 					taskNames.forEach((taskNames, index) => {
-						console.log(taskNames.magenta + ` -> ${taskStatus[index]}`);
+						console.log(`${taskNames.magenta} -> ${taskStatus[index]}`);
 					});
 					break;
 				case "yellow":
 					console.log(`\n${taskTitle}`.yellow.inverse.bold);
 					taskNames.forEach((taskNames, index) => {
-						console.log(taskNames.yellow + ` -> ${taskStatus[index]}`);
+						console.log(`${taskNames.yellow} -> ${taskStatus[index]}`);
 					});
 					break;
 				case "blue":
 					console.log(`\n${taskTitle}`.blue.inverse.bold);
 					taskNames.forEach((taskNames, index) => {
-						console.log(taskNames.blue + ` -> ${taskStatus[index]}`);
+						console.log(`${taskNames.blue} -> ${taskStatus[index]}`);
 					});
 					break;
 				default:

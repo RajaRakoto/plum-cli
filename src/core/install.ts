@@ -15,7 +15,7 @@ import { PLUM_PACKAGE, DEVMODE } from "@/constants";
 import { pkgInstaller, pkgFileDetector, pkgManagerDetector } from "@/utils/pkg";
 
 /* types */
-import { I_install_answers } from "@/@types";
+import type { I_install_answers } from "@/@types";
 
 // ==============================
 
@@ -63,7 +63,7 @@ const install_prompt = [
 export async function install(): Promise<void> {
 	const install_answers = await inquirer.prompt(install_prompt);
 	const start_install_msg = `start installation using ${install_answers.pkgManager}, please wait ${emoji.get("wink")} ...`;
-	let installProcess: boolean = true;
+	let installProcess = true;
 
 	// check if project exists
 	if (!pkgFileDetector() && !pkgManagerDetector() && install_answers.install) {

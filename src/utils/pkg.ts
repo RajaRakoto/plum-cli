@@ -2,7 +2,7 @@
 import { execa } from "execa";
 import chalk from "chalk";
 import * as emoji from "node-emoji";
-import fs from "fs";
+import fs from "node:fs";
 
 /* constants */
 import { DEV_PACKAGE } from "@/constants";
@@ -14,7 +14,7 @@ import { DEV_PACKAGE } from "@/constants";
  */
 export function pkgFileDetector(): boolean {
 	const pkgFile = fs.existsSync("package.json");
-	return pkgFile ? true : false;
+	return !!pkgFile;
 }
 
 /**
@@ -43,7 +43,7 @@ export function pkgManagerDetector(): string | null {
  */
 export async function pkgInstaller(
 	pkgManager: string,
-	dev: boolean = false,
+	dev = false,
 	pkg: string = DEV_PACKAGE,
 ): Promise<void> {
 	const commandOptions = dev ? ["--dev"] : [];
@@ -72,7 +72,7 @@ export async function pkgUninstaller(pkg: string = DEV_PACKAGE): Promise<void> {
 		return;
 	}
 
-	let uninstallCMD;
+	let uninstallCMD = "";
 	if (pkgManager === "bun" || pkgManager === "yarn") {
 		uninstallCMD = "remove";
 	} else {
