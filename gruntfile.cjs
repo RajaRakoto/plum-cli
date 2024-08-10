@@ -27,7 +27,7 @@ module.exports = (grunt) => {
 			expand: true,
 			cwd: folder,
 			src: ["**/*.{png,jpg,gif,svg}"],
-			dest: "dist/" + folder,
+			dest: `dist/${folder}`,
 		};
 	}
 
@@ -58,7 +58,7 @@ module.exports = (grunt) => {
 			},
 			apps: {
 				options: {
-					archive: backupsDestination + "apps.tar.gz",
+					archive: `${backupsDestination}apps.tar.gz`,
 				},
 				expand: true,
 				cwd: "./apps/",
@@ -67,7 +67,7 @@ module.exports = (grunt) => {
 			},
 			docs: {
 				options: {
-					archive: backupsDestination + "docs.tar.gz",
+					archive: `${backupsDestination}docs.tar.gz`,
 				},
 				expand: true,
 				cwd: "./docs/",
@@ -94,7 +94,7 @@ module.exports = (grunt) => {
 			},
 			scripts: {
 				options: {
-					archive: backupsDestination + "scripts.tar.gz",
+					archive: `${backupsDestination}scripts.tar.gz`,
 				},
 				expand: true,
 				cwd: "./scripts/",

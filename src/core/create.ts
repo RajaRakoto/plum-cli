@@ -24,7 +24,7 @@ export async function create(pkgManager: string): Promise<boolean> {
 
 	if (create_answers.create) {
 		try {
-			let pkgCMD: string = "";
+			let pkgCMD = "";
 			const pkgArgs: string[] = ["init"];
 
 			switch (pkgManager) {
