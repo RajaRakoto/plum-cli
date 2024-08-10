@@ -72,7 +72,7 @@ export async function pkgUninstaller(pkg: string = DEV_PACKAGE): Promise<void> {
 		return;
 	}
 
-	let uninstallCMD;
+	let uninstallCMD = "";
 	if (pkgManager === "bun" || pkgManager === "yarn") {
 		uninstallCMD = "remove";
 	} else {
