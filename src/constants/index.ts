@@ -1,5 +1,5 @@
 // dev
-export const DEVMODE = false;
+export const DEV_MODE = false;
 
 // package
 export const PLUM_PACKAGE = "@raja-rakoto/plum";

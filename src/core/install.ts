@@ -9,7 +9,7 @@ import { create } from "@/core/create";
 import { restartAsync } from "@/core/restart";
 
 /* constants */
-import { PLUM_PACKAGE, DEVMODE } from "@/constants";
+import { PLUM_PACKAGE, DEV_MODE } from "@/constants";
 
 /* utils */
 import { pkgInstaller, pkgFileDetector, pkgManagerDetector } from "@/utils/pkg";
@@ -82,13 +82,13 @@ export async function install(): Promise<void> {
 			case "yarn":
 			case "pnpm":
 			case "bun":
-				DEVMODE
+				DEV_MODE
 					? await pkgInstaller(install_answers.pkgManager, true)
 					: await pkgInstaller(install_answers.pkgManager, false, PLUM_PACKAGE);
 				await restartAsync(spinner);
 				break;
 			default:
-				DEVMODE
+				DEV_MODE
 					? await pkgInstaller("npm", true)
 					: await pkgInstaller("npm", false, PLUM_PACKAGE);
 				await restartAsync(spinner);
