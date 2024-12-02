@@ -17,9 +17,7 @@
 	},
 	"homepage": "https://github.com/RajaRakoto/plum-cli#readme",
 	"bugs": "https://github.com/RajaRakoto/plum-cli/issues",
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"keywords": [
 		"plum",
 		"cli",
