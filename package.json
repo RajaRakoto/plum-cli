@@ -1,6 +1,6 @@
 {
 	"name": "@raja-rakoto/plum-cli",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"description": "Streamline your web development process with Plum CLI: Effortlessly integrate the Plum package, access offline documentation and unlock a suite of applications for better use of third-party modules ... 🩷",
 	"author": "Raja Rakotonirina <raja.rakoto7@gmail.com>",
 	"license": "MIT",
@@ -17,7 +17,9 @@
 	},
 	"homepage": "https://github.com/RajaRakoto/plum-cli#readme",
 	"bugs": "https://github.com/RajaRakoto/plum-cli/issues",
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"keywords": [
 		"plum",
 		"cli",
